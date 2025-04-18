@@ -11,18 +11,4 @@ body{
 .Hero_hight{
     height: calc(100vh - 110px);
 }
-.borderEffect li::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  border-radius: 10px;
-  background-color: #eea512;
-  height: 4px;
-  width: 100%;
-  transform: scaleX(0);
-  transition: transform 0.5s ease-in-out;
-}
-.borderEffect:hover::after {
-  transform: scaleX(1);
-}
+

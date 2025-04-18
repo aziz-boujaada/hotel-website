@@ -70,7 +70,7 @@ function CallToActionButtons() {
     <>
       <div className=" flex items-center justify-center gap-6 m-8">
         <button
-          className="w-1/2  bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-4 px-4  mx-2 transition duration-300"
+          className="w-1/2  bg-orange-500 hover:bg-orange-400 text-white font-bold py-4 px-4  mx-2 transition duration-300"
           aria-label="View rooms button"
         >
           OUR ROOMS
@@ -97,7 +97,7 @@ function Header() {
 
   return (
     <>
-      <section id="header" className=" bg-indigo-900">
+      <section id="header" className=" bg-blue-950">
         {/* Top header with contact info and social icons */}
         <AnimationY>
           <div className=" top-header w-1/2 bg-white  flex ml-auto justify-around items-center px-4 py-2  ">
@@ -105,11 +105,11 @@ function Header() {
             <AnimationY>
               <div className="contact_info flex items-center gap-4">
                 <FontAwesomeIcon
-                  className="text-yellow-500"
+                  className="text-orange-500"
                   icon={faEnvelope}
                 />
                 <span className="text-sm">info@example.com</span>
-                <FontAwesomeIcon className="text-yellow-500" icon={faPhone} />
+                <FontAwesomeIcon className="text-orange-500" icon={faPhone} />
                 <span className="text-sm">+212 645325678</span>
               </div>
             </AnimationY>
@@ -126,7 +126,7 @@ function Header() {
                     className="text-xl hover:text-blue-500"
                   >
                     <FontAwesomeIcon
-                      className="text-yellow-500 hover:text-yellow-900"
+                      className="text-orange-500 hover:text-orange-400"
                       icon={socialItem.icon}
                     />
                   </a>
@@ -137,11 +137,11 @@ function Header() {
         </AnimationY>
 
         {/* Bottom header with logo and navigation list */}
-        <div className="bottom_header header_hight  flex items-center justify-between bg-slate-900 p-6">
+        <div className="bottom_header header_hight  flex items-center justify-between bg-blue-950 p-6">
           {/* Logo */}
           <AnimationX>
             <div className="logo pb-6">
-              <h1 className="text-3xl font-bold text-yellow-500">ATLAS View</h1>
+              <h1 className="text-3xl font-bold text-orange-500">ATLAS View</h1>
             </div>
           </AnimationX>
 
@@ -156,7 +156,10 @@ function Header() {
                   (item, index) => (
                     <li
                       key={index}
-                      className="relative borderEffect  text-2xl text-white cursor-pointer "
+                      className="relative text-2xl text-white cursor-pointer
+                                 after:absolute after:bottom-0 after:left-0
+                                 after:w-0 after:h-1 after:bg-orange-500  rounded 
+                                 after:transition-all after:duration-300  hover:after:w-full"
                     >
                       {item}
                     </li>
@@ -227,9 +230,9 @@ function HeroSection() {
             transition={{ duration: 2, ease: easeInOut }}
             className="text-3xl text-white font-bold rounded flex items-center justify-center gap-4"
           >
-            <span className="inline-block w-14 h-1 bg-yellow-500 rounded mt-2"></span>
+            <span className="inline-block w-14 h-1 bg-orange-500 rounded mt-2"></span>
             Luxury Living
-            <span className="inline-block w-14 h-1 bg-yellow-500 rounded mt-2"></span>
+            <span className="inline-block w-14 h-1 bg-orange-500 rounded mt-2"></span>
           </motion.h1>
 
           {/* Main headline with Playfair font */}
@@ -264,6 +267,39 @@ function HeroSection() {
   );
 }
 
+   // CALL TO ACTION FORM 
+   function CallToActionForm(){
+    return(
+      <>
+<section className="CTA_form absolute z-30 left-1/2 bottom-[-50px] transform -translate-x-1/2 bg-white p-8 rounded-lg shadow-2xl  md:w-auto flex justify-center">
+          <div className="form_inputs   flex justify-center gap-12">
+            <input type="date" placeholder="cheek-in Date"className="bg-gray-200 p-2 w-[180px] focus:outline-none focus:ring-2 focus:ring-orange-500 rounded transition duration-300"
+ />
+            <input type="date" placeholder="cheek-out Date" className="bg-gray-200 p-2 w-[180px] focus:outline-none focus:ring-2 focus:ring-orange-500 rounded transition duration-300"
+ />
+             <select name="" id="" className="bg-gray-200 p-2 w-[180px] focus:outline-none focus:ring-2 focus:ring-orange-500 rounded transition duration-300">
+              <option value="">Adults</option>
+              <option value=""> 1 Adult </option>
+              <option value="">2 Adults</option>
+              <option value=""> 3 Adults </option>
+             </select>
+
+             <select name="" id="" className="bg-gray-200 p-2 w-[180px] focus:outline-none focus:ring-2 focus:ring-orange-500 rounded transition duration-300"
+             >
+              <option value="">Child</option>
+              <option value="">Child 1</option>
+              <option value="">Child 2</option>
+              <option value="">Child 3</option>
+             </select>
+             <button className="bg-orange-500 p-2 w-[160px] hover:bg-orange-400 transition duration-300"
+             >submit</button>
+          </div>
+  
+        </section>
+       
+      </>
+    )
+   }
 // Main app component
 export default function App() {
   return (
@@ -271,7 +307,10 @@ export default function App() {
       <Header />
       <section>
         <HeroSection />
+        <CallToActionForm/>
       </section>
+      
+     
     </>
   );
 }
