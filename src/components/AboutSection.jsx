@@ -9,9 +9,9 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const OurNumbers = [
-  { name: "Rooms", icon: faHotel, numbers: 1234 },
-  { name: "Staff", icon: faUsersGear, numbers: 1234 },
-  { name: "Clients", icon: faUsers, numbers: 1234 },
+  { name: "Rooms", icon: faHotel, numbers: 127 },
+  { name: "Staff", icon: faUsersGear, numbers: 97 },
+  { name: "Clients", icon: faUsers, numbers: 534 },
 ];
 function OurNumbersSpeak({ targetNumber }) {
   const [NumbersSpeak, setNumbersSpeak] = useState(0);
@@ -25,7 +25,7 @@ function OurNumbersSpeak({ targetNumber }) {
           return start;
         }
       });
-    }, 4);
+    }, 30);
     return () => clearInterval(interval);
   }, [targetNumber]);
   return <strong>{NumbersSpeak}</strong>;
@@ -83,12 +83,12 @@ export default function AboutSection() {
               ))}
             </div>
           </div>
-          <div className="grid  grid-cols-2  gap-2 ">
+          <div className="grid  grid-cols-2  gap-2  ">
             <AnimationY>
               <img
                 src="about-2.jpg"
                 alt="hotel image"
-                className="w-[400px] h-[300px] shadow-lg"
+                className="w-[400px] h-[300px] mt-12 shadow-lg"
               />
             </AnimationY>
             <AnimationX>

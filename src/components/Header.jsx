@@ -31,10 +31,10 @@ export default function Header() {
     <>
       <section id="header" className=" bg-blue-950">
         {/* Top header with contact info and social icons */}
-        <AnimationY>
+        <AnimationX>
           <div className=" top-header w-1/2 bg-white  flex ml-auto justify-around items-center px-4 py-2  ">
             {/* Contact info section */}
-            <AnimationY>
+            <AnimationX>
               <div className="contact_info flex items-center gap-4">
                 <FontAwesomeIcon
                   className="text-orange-500"
@@ -44,7 +44,7 @@ export default function Header() {
                 <FontAwesomeIcon className="text-orange-500" icon={faPhone} />
                 <span className="text-sm">+212 645325678</span>
               </div>
-            </AnimationY>
+            </AnimationX>
 
             {/* Social media icons */}
             <AnimationX>
@@ -66,7 +66,7 @@ export default function Header() {
               </div>
             </AnimationX>
           </div>
-        </AnimationY>
+        </AnimationX>
 
         {/* Bottom header with logo and navigation list */}
         <div className="bottom_header header_hight  flex items-center justify-between bg-blue-950 p-6">
