@@ -1,6 +1,5 @@
 // CALL TO ACTION FORM
 import AnimationX from "./Animations/AnimationX";
-import AnimationY from "./Animations/AnimationX";
 export default function CallToActionForm() {
     return (
       <>

@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import AnimationX from "./Animations/AnimationX";
 import AnimationY from "./Animations/AnimationY";
+import AnimationXtoRight from "./Animations/AnimationXtoRight"
 import {
   faHotel,
   faUsersGear,
   faUsers,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useInView } from "react-intersection-observer";
 
 const OurNumbers = [
   { name: "Rooms", icon: faHotel, numbers: 127 },
@@ -15,8 +17,10 @@ const OurNumbers = [
 ];
 function OurNumbersSpeak({ targetNumber }) {
   const [NumbersSpeak, setNumbersSpeak] = useState(0);
+  const {ref , inView} = useInView({triggerOnce:true})
   useEffect(() => {
     const interval = setInterval(() => {
+      if(!inView)return;
       setNumbersSpeak((start) => {
         if (start < targetNumber) {
           return start + 1;
@@ -25,10 +29,10 @@ function OurNumbersSpeak({ targetNumber }) {
           return start;
         }
       });
-    }, 30);
+    }, 20);
     return () => clearInterval(interval);
-  }, [targetNumber]);
-  return <strong>{NumbersSpeak}</strong>;
+  }, [targetNumber ,inView]);
+  return <strong ref={ref}>{NumbersSpeak}</strong>;
 
 }
 export default function AboutSection() {
@@ -74,7 +78,7 @@ export default function AboutSection() {
                     />
                     <h2 className="pt-4 text-3xl">
                       {" "}
-                      <OurNumbersSpeak targetNumber={item.numbers} />{" "}
+                      <OurNumbersSpeak  targetNumber={item.numbers} />{" "}
                     </h2>
 
                     <h2 className="pt-4 text-lg text-gray-500">{item.name}</h2>
@@ -91,23 +95,23 @@ export default function AboutSection() {
                 className="w-[400px] h-[300px] mt-12 shadow-lg"
               />
             </AnimationY>
-            <AnimationX>
+            <AnimationXtoRight>
               <img
                 src="about-1.jpg"
                 alt="hotel image"
                 className="w-[300px] h-[250px]  mt-24 shadow-lg"
               />
-            </AnimationX>
+            </AnimationXtoRight>
             <AnimationY>
               <img src="about-3.jpg" alt="hotel image" className="shadow-lg" />
             </AnimationY>
-            <AnimationX>
+            <AnimationXtoRight>
               <img
                 src="about-4.jpg"
                 alt="hotel image"
                 className="w-[400px] h-[250px] shadow-lg"
               />
-            </AnimationX>
+            </AnimationXtoRight>
           </div>
         </div>
       </section>

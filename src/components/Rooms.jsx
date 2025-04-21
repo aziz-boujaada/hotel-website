@@ -1,15 +1,17 @@
 import AnimationX from "./Animations/AnimationX";
 import AnimationY from "./Animations/AnimationY";
 import AnimationXtoRight from "./Animations/AnimationXtoRight";
+import FormModal from "./FormModal";
 import {
   faBed,
   faBath,
   faWifi,
   faStar,
   faDollarSign,
-  faHeart
+  faHeart,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useState } from "react";
 
 //section title
 function SectionTitle() {
@@ -30,13 +32,14 @@ function SectionTitle() {
 }
 
 //Book Room button
-function BookRooMbtn() {
+function BookRooMbtn({onClick}) {
   return (
-    <>
-      <button className="w-full h-10 bg-orange-500 rounded mt-6 text-white font-semibold border border-transparent hover:text-orange-500 hover:bg-white hover:border-orange-500 transition-all duration-300">
-        BOOK ROOM
-      </button>
-    </>
+    <button
+      onClick={onClick}
+      className="w-full h-10 bg-orange-500 rounded mt-6 text-white font-semibold border border-transparent hover:text-orange-500 hover:bg-white hover:border-orange-500 transition-all duration-300"
+    >
+      BOOK ROOM
+    </button>
   );
 }
 // Room image
@@ -44,7 +47,11 @@ function RoomsImage({ room }) {
   return (
     <>
       <div>
-        <img src={room.img} alt={room.type} className="relative object-cover w-full h-[250px]" />
+        <img
+          src={room.img}
+          alt={room.type}
+          className="relative object-cover w-full h-[250px]"
+        />
       </div>
     </>
   );
@@ -55,7 +62,7 @@ function RoomTypeAndRating({ room }) {
     <>
       <div className="flex items-center justify-between pt-4">
         <h2 className="font-Parkinsans font-semibold">{room.type}</h2>
-        <div className="text-yellow-500">
+        <div className="text-yellow-400">
           {[...Array(room.rating)].map((_, i) => (
             <FontAwesomeIcon key={i} icon={faStar} />
           ))}
@@ -95,20 +102,33 @@ function RoomsServices({ room }) {
       </div>
     </>
   );
-} 
-
+}
 
 //add to favorite
-function AddTofavorite(){
-  return(
-    <>
-     <FontAwesomeIcon icon={faHeart} className="h-6 bg-orange-500 text-white rounded mt-6 p-1"/>
-    </>
-  )
+function AddTofavorite({ room }) {
+  const [Liked, setLiked] = useState(() => {
+    const Save = localStorage.getItem(`Liked ${room.id}`);
+    return Save ? JSON.parse(Save) : false;
+  });
+  useEffect(() => {
+    localStorage.setItem(`Liked ${room.id}`, JSON.stringify(Liked));
+  }, [Liked]);
+  return (
+    <FontAwesomeIcon
+      icon={faHeart}
+      className={`h-6 bg-orange-500 text-white rounded mt-6 p-1 cursor-pointer ${
+        Liked ? " text-red-600" : "bg-orange-500 text-white"
+      }`}
+      onClick={() => setLiked(!Liked)}
+    />
+  );
 }
+//
+
 export default function PopularRooms() {
   const Rooms = [
     {
+      id: 1,
       img: "room-1.jpg",
       type: "Junior Suite",
       price: 100,
@@ -119,6 +139,7 @@ export default function PopularRooms() {
         "Experience comfort and elegance in our Junior Suite, featuring a spacious bed, modern bathroom, and cozy ambiance perfect for couples or solo travelers.",
     },
     {
+      id: 2,
       img: "room-2.jpg",
       type: "Executive Suite",
       price: 100,
@@ -129,6 +150,7 @@ export default function PopularRooms() {
         "Our Executive Suite offers luxurious space with refined decor, ideal for business travelers and families seeking both style and functionality.",
     },
     {
+      id: 3,
       img: "room-3.jpg",
       type: "Super Deluxe",
       price: 100,
@@ -139,33 +161,42 @@ export default function PopularRooms() {
         "Indulge in the ultimate luxury in our Super Deluxe room, complete with premium furnishings, elegant lighting, and an unforgettable atmosphere.",
     },
   ];
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const handleOpenModal = () => {
+    setModalOpen(true);
+  };
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
   return (
     <>
-      <section className="mt-[10em]">
+      <section className=" relative mt-[10em]">
         <SectionTitle />
 
         {/* ROOMS CARDS*/}
         <AnimationXtoRight>
-        <div className="flex items-center gap-10 pt-6 ">
-          {Rooms.map((room, index) => (
-            <div
-              key={index}
-              className="relative  shadow-2xl transition-transform hover:scale-105 duration-300"
-            >
-              <RoomsImage room={room} />
-              <div className="p-5">
-                <RoomTypeAndRating room={room} />
-                <RoomsPrices roomPrice={room} />
-                <RoomsServices room={room} />
-                <h2 className="pt-4 text-gray-700">{room.description}</h2>
-                <div className="flex items-center gap-4">
-                  <BookRooMbtn />
-                  <AddTofavorite/>
+          <div className="flex items-center gap-10 py-6 ">
+            {Rooms.map((room, index) => (
+              <div
+                key={index}
+                className="relative  shadow-2xl transition-transform hover:scale-105 duration-300"
+              >
+                <RoomsImage room={room} />
+                <div className="p-5">
+                  <RoomTypeAndRating room={room} />
+                  <RoomsPrices roomPrice={room} />
+                  <RoomsServices room={room} />
+                  <h2 className="pt-4 text-gray-700">{room.description}</h2>
+                  <div className="flex items-center gap-4">
+                    <BookRooMbtn onClick={handleOpenModal} />
+                    <AddTofavorite room={room} />
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+          <FormModal isOpen={modalOpen} isClose={handleCloseModal} />
         </AnimationXtoRight>
       </section>
     </>
