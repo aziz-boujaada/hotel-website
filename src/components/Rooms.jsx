@@ -17,6 +17,7 @@ import { useEffect, useState } from "react";
 function SectionTitle() {
   return (
     <>
+    <AnimationY>
       <div>
         <h1 className="text-xl text-center font-semibold text-orange-400">
           <span className="inline-block w-14 h-1 bg-orange-400 rounded  m-1"></span>{" "}
@@ -27,6 +28,7 @@ function SectionTitle() {
           Explore Our <span className="text-orange-500">ROOMS</span>
         </h1>
       </div>
+      </AnimationY>
     </>
   );
 }
@@ -74,7 +76,7 @@ function RoomTypeAndRating({ room }) {
 // rooms prices
 function RoomsPrices({ roomPrice }) {
   return (
-    <div className="absolute left-6 top-[45%] text-center bg-orange-500 py-2 px-4  rounded">
+    <div className="absolute left-6 top-[43%] text-center bg-orange-500 py-2 px-4  rounded">
       <h2 className="text-xs font-semibold text-white">
         {roomPrice.price} <FontAwesomeIcon icon={faDollarSign} /> /Night{" "}
       </h2>
@@ -105,21 +107,23 @@ function RoomsServices({ room }) {
 }
 
 //add to favorite
-function AddTofavorite({ room }) {
-  const [Liked, setLiked] = useState(() => {
-    const Save = localStorage.getItem(`Liked ${room.id}`);
-    return Save ? JSON.parse(Save) : false;
+function AddToFavorite({ room }) {
+  const [liked, setLiked] = useState(() => {
+    const saved = localStorage.getItem(`Liked ${room.id}`);
+    return saved ? JSON.parse(saved) : false;
   });
+
   useEffect(() => {
-    localStorage.setItem(`Liked ${room.id}`, JSON.stringify(Liked));
-  }, [Liked]);
+    localStorage.setItem(`Liked ${room.id}`, JSON.stringify(liked));
+  }, [liked]);
+
   return (
     <FontAwesomeIcon
       icon={faHeart}
-      className={`h-6 bg-orange-500 text-white rounded mt-6 p-1 cursor-pointer ${
-        Liked ? " text-red-600" : "bg-orange-500 text-white"
+      className={`h-6 mt-6 p-1 cursor-pointer rounded transition-colors duration-300 ${
+        liked ? "text-red-600 bg-orange-100" : "text-white bg-orange-500"
       }`}
-      onClick={() => setLiked(!Liked)}
+      onClick={() => setLiked(!liked)}
     />
   );
 }
@@ -171,12 +175,12 @@ export default function PopularRooms() {
   };
   return (
     <>
-      <section className=" relative mt-[10em]">
+      <section className=" relative mt-[7em]">
         <SectionTitle />
 
         {/* ROOMS CARDS*/}
         <AnimationXtoRight>
-          <div className="flex items-center gap-10 py-6 ">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 py-6 ">
             {Rooms.map((room, index) => (
               <div
                 key={index}
@@ -190,7 +194,7 @@ export default function PopularRooms() {
                   <h2 className="pt-4 text-gray-700">{room.description}</h2>
                   <div className="flex items-center gap-4">
                     <BookRooMbtn onClick={handleOpenModal} />
-                    <AddTofavorite room={room} />
+                    <AddToFavorite room={room} />
                   </div>
                 </div>
               </div>

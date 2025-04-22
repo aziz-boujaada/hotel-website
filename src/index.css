@@ -2,9 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-    margin: 0 6em;
+body {
+  margin: 0;
+  background-color: whitesmoke;
 }
+
+.container {
+  margin: 0 auto;
+  padding: 0 2em;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1em;
+  }
+}
+
 .header_hight{
   height: 70px;
 }
