@@ -5,6 +5,7 @@ import AboutSection from "./components/AboutSection";
 import Rooms from "./components/Rooms";
 import Services from "./components/services";
 import TestImonial from "./components/Testimonial";
+import Staff from "./components/Staff"
 
 export default function App() {
   return (
@@ -26,6 +27,9 @@ export default function App() {
     </section>
     <section>
       <TestImonial/>
+    </section>
+    <section>
+      <Staff/>
     </section>
     </section>
     </>
