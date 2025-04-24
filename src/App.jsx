@@ -5,33 +5,37 @@ import AboutSection from "./components/AboutSection";
 import Rooms from "./components/Rooms";
 import Services from "./components/services";
 import TestImonial from "./components/Testimonial";
-import Staff from "./components/Staff"
+import Staff from "./components/Staff";
+import Footer from "./components/Footer";
 
 export default function App() {
   return (
     <>
-    <section className="container">
-    <section>
-      <Header />
-      <HeroSection />
-      <CallToActionForm />
-    </section>
-    <section>
-      <AboutSection/>
-    </section>
-    <section>
-      <Rooms/>
-    </section>
-    <section>
-      <Services/>
-    </section>
-    <section>
-      <TestImonial/>
-    </section>
-    <section>
-      <Staff/>
-    </section>
-    </section>
+      <section className="container">
+        <section>
+          <Header />
+          <HeroSection />
+          <CallToActionForm />
+        </section>
+        <section>
+          <AboutSection />
+        </section>
+        <section>
+          <Rooms />
+        </section>
+        <section>
+          <Services />
+        </section>
+        <section>
+          <TestImonial />
+        </section>
+        <section>
+          <Staff />
+        </section>
+        <footer>
+          <Footer/>
+        </footer>
+      </section>
     </>
   );
 }

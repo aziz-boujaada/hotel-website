@@ -13,6 +13,7 @@ import {
   faXTwitter,
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
+import AnimationXtoRight from "./Animations/AnimationXtoRight"
 import AnimationX from "./Animations/AnimationX"
 import AnimationY from "./Animations/AnimationY";
 
@@ -71,11 +72,11 @@ export default function Header() {
         {/* Bottom header with logo and navigation list */}
         <div className="bottom_header header_hight  flex items-center justify-between bg-blue-950 p-6">
           {/* Logo */}
-          <AnimationX>
+          <AnimationXtoRight>
             <div className="logo pb-6">
               <h1 className="text-3xl font-bold text-orange-500">ATLAS View</h1>
             </div>
-          </AnimationX>
+          </AnimationXtoRight>
 
           {/* Navigation list */}
           <AnimationX>
