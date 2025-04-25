@@ -1,5 +1,5 @@
 // CALL TO ACTION FORM
-import AnimationX from "./Animations/AnimationX";
+import AnimationX from "../Animations/AnimationX";
 export default function CallToActionForm() {
     return (
       <>

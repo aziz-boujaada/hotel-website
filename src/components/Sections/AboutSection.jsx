@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import AnimationX from "./Animations/AnimationX";
-import AnimationY from "./Animations/AnimationY";
-import AnimationXtoRight from "./Animations/AnimationXtoRight"
+import AnimationX from "../Animations/AnimationX";
+import AnimationY from "../Animations/AnimationY";
+import AnimationXtoRight from "../Animations/AnimationXtoRight"
 import {
   faHotel,
   faUsersGear,

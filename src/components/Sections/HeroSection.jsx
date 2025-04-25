@@ -7,9 +7,9 @@ import {
  faChevronRight
 } from "@fortawesome/free-solid-svg-icons";
 
-import AnimationX from "./Animations/AnimationX"
-import AnimationY from "./Animations/AnimationY";
-import CallToActionButtons from "./CTA";
+import AnimationX from "../Animations/AnimationX"
+import AnimationY from "../Animations/AnimationY";
+import CallToActionButtons from "../Forms/CTA";
 
 export default function HeroSection() {
   const HotelImages = [

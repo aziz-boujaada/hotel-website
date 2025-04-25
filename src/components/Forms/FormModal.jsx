@@ -1,7 +1,7 @@
-import {useState } from "react";
+
 import {faXmark} from "@fortawesome/free-solid-svg-icons";
   import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import AnimationY from "./Animations/AnimationY";
+import AnimationY from "../Animations/AnimationY";
   function CloseButton({ onClick }) {
     return (
       <button

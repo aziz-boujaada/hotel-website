@@ -14,9 +14,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 // Import animation components
-import AnimationXtoRight from "./Animations/AnimationXtoRight";
-import AnimationX from "./Animations/AnimationX";
-import AnimationY from "./Animations/AnimationY";
+import AnimationXtoRight from "../Animations/AnimationXtoRight";
+import AnimationX from "../Animations/AnimationX";
+import AnimationY from "../Animations/AnimationY";
 
 // Import FontAwesome icon component
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -65,7 +65,7 @@ function ContactInformation() {
   ];
 
   return (
-    <div>
+    <div className="relative">
       <AnimationY>
         <div>
           {/* Contact section title */}
@@ -153,20 +153,40 @@ function Copyright(){
   )
 }
 
+//NewsLetter component
+ function NewsLetter(){
+  return(
+    
+      <div className="bg-white text-center w-10/12 mx-6 p-10  absolute top-[-20%] shadow-xl rounded ">
+          <div>
+              <h1 className="text-3xl font-Parkinsans font-semibold"> Subscribe Our <span className="text-orange-500">NewsLetter</span></h1>
+          </div>
+          <form action="" className=" relative flex gap-5 justify-center items-center pt-5">
+              <input type="text"  placeholder="Enter Your Email" className="relative w-1/2 border border-gray-400 p-3 hover:border-orange-500 focus:outline-none focus:ring-2 focus:border-none focus:ring-orange-500 transition-all duration-300"/>
+          <button className="bg-orange-500 p-3 text-white absolute right-1/4 hover:bg-orange-400 transition-all duration-300">subscribe</button>
+          </form>
+      </div>
+      
+  )
+}
+
 // Main footer component
 export default function Footer() {
   return (
     <>
-      <footer className="bg-slate-900" >
+    <AnimationXtoRight>
+      <footer className="bg-slate-900 relative mt-[10em]" >
         {/* Footer main content */}
-        <div className=" flex flex-wrap  justify-around gap-6 p-12 border border-b border-gray-500">
+        <div className=" flex flex-wrap  justify-around gap-6 px-12 py-28 border border-b border-gray-500">
           <FooterParagraph />
           <ContactInformation />
           <QuickLinks />
+          <NewsLetter/>
         </div>
         {/* Footer copyright */}
         <Copyright/>
       </footer>
+      </AnimationXtoRight>
     </>
   );
 }

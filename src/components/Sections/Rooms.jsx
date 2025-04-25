@@ -1,7 +1,7 @@
-import AnimationX from "./Animations/AnimationX";
-import AnimationY from "./Animations/AnimationY";
-import AnimationXtoRight from "./Animations/AnimationXtoRight";
-import FormModal from "./FormModal";
+import AnimationX from "../Animations/AnimationX";
+import AnimationY from "../Animations/AnimationY";
+import AnimationXtoRight from "../Animations/AnimationXtoRight";
+import FormModal from "../Forms/FormModal";
 import {
   faBed,
   faBath,

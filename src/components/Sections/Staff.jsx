@@ -3,8 +3,8 @@ import {
   faInstagram,
   faXTwitter,
 } from "@fortawesome/free-brands-svg-icons";
-import AnimationX from "./Animations/AnimationX";
-import AnimationY from "./Animations/AnimationY";
+import AnimationY from "../Animations/AnimationY";
+import AnimationX from "../Animations/AnimationX";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const ourStaffInfo = [
@@ -71,7 +71,7 @@ function SectionTitle() {
 
 export default function OurStaff() {
   return (
-    <section className="mt-[6em] pb-8">
+    <section className="mt-[6em] pb-8 relative">
       <SectionTitle />
         <AnimationX>
       <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 text-center px-5 mt-6 ">

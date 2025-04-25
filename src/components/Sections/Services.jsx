@@ -1,6 +1,5 @@
-import AnimationX from "./Animations/AnimationX";
-import AnimationY from "./Animations/AnimationY";
-import AnimationXtoRight from "./Animations/AnimationXtoRight";
+import AnimationX from "../Animations/AnimationX";
+import AnimationY from "../Animations/AnimationY";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHotel,

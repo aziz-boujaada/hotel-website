@@ -13,9 +13,9 @@ import {
   faXTwitter,
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
-import AnimationXtoRight from "./Animations/AnimationXtoRight"
-import AnimationX from "./Animations/AnimationX"
-import AnimationY from "./Animations/AnimationY";
+import AnimationXtoRight from "../Animations/AnimationXtoRight"
+import AnimationX from "../Animations/AnimationX"
+import AnimationY from "../Animations/AnimationY";
 
 
 export default function Header() {

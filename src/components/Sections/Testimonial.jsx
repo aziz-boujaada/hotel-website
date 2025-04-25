@@ -1,6 +1,6 @@
-import AnimationX from "./Animations/AnimationX";
-import AnimationY from "./Animations/AnimationY";
-import AnimationXtoRight from "./Animations/AnimationXtoRight";
+
+import AnimationY from "../Animations/AnimationY";
+import AnimationXtoRight from "../Animations/AnimationXtoRight";
 import { faQuoteLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
