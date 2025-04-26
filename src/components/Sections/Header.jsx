@@ -1,5 +1,6 @@
  
 // src/components/Header.jsx
+import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -16,6 +17,7 @@ import {
 import AnimationXtoRight from "../Animations/AnimationXtoRight"
 import AnimationX from "../Animations/AnimationX"
 import AnimationY from "../Animations/AnimationY";
+
 
 
 export default function Header() {
@@ -88,13 +90,22 @@ export default function Header() {
                 {["Home", "About", "Services", "Rooms", "Contact"].map(
                   (item, index) => (
                     <li
+
                       key={index}
-                      className="relative text-2xl text-white cursor-pointer
-                                 after:absolute after:bottom-0 after:left-0
-                                 after:w-0 after:h-1 after:bg-orange-500  rounded 
-                                 after:transition-all after:duration-300  hover:after:w-full"
-                    >
-                      {item}
+                      
+                      >
+                      <NavLink
+                       to={`/${item.toLowerCase()}`}
+                        className={({isActive}) =>(
+                       isActive ? "relative text-2xl text-orange-500 cursor-pointer after:absolute after:bottom-0 after:left-0 after:w-full after:h-1 after:bg-orange-500  rounded-full  after:transition-all after:duration-300  hover:after:w-full"
+                       : "relative text-2xl text-white cursor-pointer after:absolute after:bottom-0 after:left-0 after:w-0 after:h-1 after:bg-orange-500  rounded-full  after:transition-all after:duration-300  hover:after:w-full"
+                  )}
+                       >
+                        {item}
+                      </NavLink>
+                    
+                      
+                    
                     </li>
                   )
                 )}
