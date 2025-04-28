@@ -5,17 +5,22 @@ import AboutPage from "./components/Pages/AboutPage";
 import ServicesPage from "./components/Pages/ServicesPage";
 import RoomsPage from "./components/Pages/RoomsPage";
 import HomePage from "./components/Pages/Homepage";
+import NotFoundPage from "./components/Pages/NotFoundPage";
+import ContactPage from "./components/Pages/ContactPage";
 
 export default function App() {
   return (
     <section className="container">
     <BrowserRouter>
-      <Header />
+      <Header/>
       <Routes>
+        <Route path="/" element={<HomePage />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/rooms" element={<RoomsPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <ScrollTop />
     </BrowserRouter>

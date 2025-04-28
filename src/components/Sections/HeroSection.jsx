@@ -46,7 +46,7 @@ export default function HeroSection() {
     <>
       {/* Fullscreen background hero section with image slider */}
       <div
-        className=" Hero_hight relative w-full h-screen bg-cover bg-center items-center justify-center  transition-all duration-1000"
+        className=" relative w-full h-screen bg-cover bg-center items-center justify-center  transition-all duration-1000"
         style={{ backgroundImage: `url(${HotelImages[CurrentImage]})` }}
       >
         {/* Overlay gradient for better text visibility */}

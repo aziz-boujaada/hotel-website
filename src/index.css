@@ -15,14 +15,12 @@ body {
 
 @media (max-width: 768px) {
   .container {
-    padding: 0 1em;
+    padding: 0;
   }
 }
 
 .header_hight{
   height: 70px;
 }
-.Hero_hight{
-    height: calc(100vh - 110px);
-}
+
 
