@@ -40,7 +40,7 @@ export default function AboutSection() {
   return (
     <>
       <section className="mt-[10em]">
-        <div className="flex justify-around gap-10">
+        <div className="grid grid-cols-1 lg:flex gap-10  justify-between">
           <div>
             <AnimationX>
               <h1 className="text-xl font-semibold text-orange-500">
@@ -67,10 +67,10 @@ export default function AboutSection() {
                 you'll always remember.
               </p>
             </AnimationX>
-            <div className="flex items-center justify-between gap-10 pt-8">
+            <div className="grid grid-cols-1 lg:flex gap-10 justify-between pt-8 ">
               {OurNumbers.map((item, index) => (
                 <AnimationY key={index}>
-                  <div className="border text-center px-10 py-2 w-[200px] shadow-lg">
+                  <div className="border text-center px-10 py-2 w-full lg:w-[200px] shadow-lg">
                     <FontAwesomeIcon
                       icon={item.icon}
                       size="2xl"

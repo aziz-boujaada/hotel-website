@@ -24,7 +24,7 @@ export default function GotoTop() {
 
   return (
     buttonVisible && (
-      <div className=" fixed right-20 bottom-1">
+      <div className=" fixed right-0 lg:right-20 bottom-1">
         <FontAwesomeIcon
           onClick={handleGoTop}
           icon={faArrowUp}

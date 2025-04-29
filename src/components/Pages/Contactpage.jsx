@@ -1,10 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import HeroSection from "../Sections/HeroSection";
 import Footer from "../Sections/Footer";
 
 export default function ContactPage() {
   return (
     <>
+    <HeroSection/>
     <div className="bg-gray-50 p-8 min-h-screen mt-10">
       <h1 className="text-4xl font-bold text-center mb-12">
         <span className="text-orange-500">CONTACT</span> For Any Query

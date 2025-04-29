@@ -69,7 +69,7 @@ function Logo() {
       {/* Logo */}
       <AnimationXtoRight>
         <div className="logo pb-6">
-          <h1 className="text-3xl font-bold text-orange-500">ATLAS View</h1>
+          <h1 className="text-xl lg:text-3xl font-bold text-orange-500">ATLAS View</h1>
         </div>
       </AnimationXtoRight>
     </>
@@ -103,18 +103,18 @@ function NavigationList() {
         className=" text-center"
       >
         
-         <FontAwesomeIcon icon={faBars} onClick={(event)=>{ event.stopPropagation();handleOpen()}} className="text-3xl cursor-pointer text-white lg:hidden"  />
+         <FontAwesomeIcon icon={faBars} onClick={(event)=>{ event.stopPropagation();handleOpen()}} className="text-3xl cursor-pointer text-white hover:text-orange-500 lg:hidden"  />
     
        
     
       <ul
-      className={`Nav_List flex flex-col lg:flex-row items-center gap-6 mr-8 mt-52 lg:mt-0  p-6 ${
-        navVisible ? "block " : "hidden"
+      className={`Nav_List relative flex flex-col lg:flex-row items-center gap-6 mr-0 lg:mr-8 mt-56 lg:mt-0  p-8  ${
+        navVisible ? "block bg-blue-950 "  : "hidden"
       } lg:flex lg:static`}
       >
           
      {navVisible && (
-       <FontAwesomeIcon icon={faXmark} onClick={handleClose} className="text-3xl cursor-pointer text-white lg:hidden"/>
+       <FontAwesomeIcon icon={faXmark} onClick={handleClose} className=" absolute left-1 top-1 text-3xl cursor-pointer text-white  hover:text-orange-500 lg:hidden"/>
      )}
           {["Home", "About", "Services", "Rooms", "Contact"].map(
             (item, index) => (
@@ -140,7 +140,7 @@ function NavigationList() {
 export default function Header() {
   return (
     <>
-      <section id="header" className=" bg-blue-950 fixed z-50 w-full ">
+      <section id="header" className=" bg-blue-950 fixed z-50 w-full container ">
         {/* Top header with contact info and social icons */}
         <AnimationX>
           <div className=" top-header w-full  lg:w-1/2 hidden  bg-white  lg:flex ml-auto justify-around items-center px-4 py-2  ">
@@ -153,7 +153,7 @@ export default function Header() {
         </AnimationX>
 
         {/* Bottom header with logo and navigation list */}
-        <div className="bottom_header header_hight  flex items-center justify-between ">
+        <div className="bottom_header header_hight  flex items-center justify-between lg:px-5 ">
           {/* Logo */}
           <Logo />
           {/* Navigation list */}

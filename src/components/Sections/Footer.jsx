@@ -26,7 +26,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 function FooterParagraph() {
   return (
     <AnimationX>
-      <div className="bg-orange-500 w-[350px] p-3 ">
+      <div className="bg-orange-500 w-full lg:w-[350px] p-3 ">
         <h1 className="text-3xl font-bold pt-3 text-white ">ATLAS VIEW </h1>
         <p className="py-5 text-white">
           Located in the heart of the Atlas Mountains, Atlas View Hotel is where
@@ -157,13 +157,13 @@ function Copyright(){
  function NewsLetter(){
   return(
     
-      <div className="bg-white text-center w-10/12 mx-6 p-10  absolute top-[-20%] shadow-xl rounded ">
+      <div className="bg-white text-center w-10/12 mx-6 p-2 lg:p-10  absolute top-[-12%] right-3 lg:right-20 lg:top-[-20%] shadow-xl rounded ">
           <div>
               <h1 className="text-3xl font-Parkinsans font-semibold"> Subscribe Our <span className="text-orange-500">NewsLetter</span></h1>
           </div>
-          <form action="" className=" relative flex gap-5 justify-center items-center pt-5">
-              <input type="text"  placeholder="Enter Your Email" className="relative w-1/2 border border-gray-400 p-3 hover:border-orange-500 focus:outline-none focus:ring-2 focus:border-none focus:ring-orange-500 transition-all duration-300"/>
-          <button className="bg-orange-500 p-3 text-white absolute right-1/4 hover:bg-orange-400 transition-all duration-300">subscribe</button>
+          <form action="" className=" relative grid grid-cols-1 lg:flex  gap-5 justify-center items-center pt-5">
+              <input type="text"  placeholder="Enter Your Email" className="relative w-full lg:w-1/2 border border-gray-400 p-3 hover:border-orange-500 focus:outline-none focus:ring-2 focus:border-none focus:ring-orange-500 transition-all duration-300"/>
+             <button className="bg-orange-500 p-3 text-white relative lg:absolute lg:right-1/4  hover:bg-orange-400 transition-all duration-300">subscribe</button>
           </form>
       </div>
       
@@ -177,7 +177,7 @@ export default function Footer() {
     <AnimationXtoRight>
       <footer className="bg-slate-900 relative mt-[10em]" >
         {/* Footer main content */}
-        <div className=" flex flex-wrap  justify-around gap-6 px-12 py-28 border border-b border-gray-500">
+        <div className=" flex flex-col lg:flex-row items-start  justify-around gap-6 px-6 lg:px-12 py-28 border border-b border-gray-500">
           <FooterParagraph />
           <ContactInformation />
           <QuickLinks />

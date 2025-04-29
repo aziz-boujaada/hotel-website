@@ -3,19 +3,23 @@
 @tailwind utilities;
 
 body {
-  margin: 0;
+  margin:0 2em;
   background-color: whitesmoke;
   scroll-behavior: smooth;
 }
 
 .container {
   margin: 0 auto;
-  padding: 0 2em;
 }
 
-@media (max-width: 768px) {
-  .container {
+@media screen and (max-width: 768px ) and ( min-width: 360px) {
+  .container  {
+    margin: 0;
     padding: 0;
+  }
+  body{
+    margin: 0;
+    padding:  0 5px;
   }
 }
 
