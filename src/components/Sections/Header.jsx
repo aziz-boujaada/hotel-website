@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEnvelope,
@@ -69,7 +70,9 @@ function Logo() {
       {/* Logo */}
       <AnimationXtoRight>
         <div className="logo pb-6">
-          <h1 className="text-xl lg:text-3xl font-bold text-orange-500">ATLAS View</h1>
+          <h1 className="text-xl lg:text-3xl font-bold text-orange-500">
+            ATLAS View
+          </h1>
         </div>
       </AnimationXtoRight>
     </>
@@ -77,6 +80,8 @@ function Logo() {
 }
 function NavigationList() {
   const [navVisible, setNavVisible] = useState(false);
+
+  // Close navigation when clicking outside the nav list
   useEffect(() => {
     const handleClickOutSide = (event) => {
       if (navVisible && !event.target.closest(".Nav_List")) {
@@ -87,40 +92,94 @@ function NavigationList() {
     return () => {
       document.removeEventListener("click", handleClickOutSide);
     };
-
   }, [navVisible]);
+
+  // Open menu on clicking bars icon
   const handleOpen = () => {
     setNavVisible(true);
   };
+
+  // Close menu on clicking x icon
   const handleClose = () => {
     setNavVisible(false);
   };
-  
+
+  // Ref and inView for triggering animation only once
+  const { ref: NavRef, inView: NavInView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  //control navigation list in laptop & mobile
+  const [isMobile , setIsMobile] = useState(false);
+
+  // Check window width to define mobile or not
+  useEffect(()=>{
+    const checkIsMobile = () =>{
+     if( window.innerWidth > 768 ){
+      setIsMobile(true);
+     }else{
+      setIsMobile(false)
+     }
+    }
+
+    // Initial check
+    checkIsMobile();
+    window.addEventListener("resize" , checkIsMobile);
+    return () =>{
+       removeEventListener("resize" , checkIsMobile)
+      }
+  }, [])
+
   return (
     <AnimationX>
       <motion.div
         transition={{ duration: 3, ease: "easeInOut" }}
         className=" text-center"
       >
-        
-         <FontAwesomeIcon icon={faBars} onClick={(event)=>{ event.stopPropagation();handleOpen()}} className="text-3xl cursor-pointer text-white hover:text-orange-500 lg:hidden"  />
-    
-       
-    
-      <ul
-      className={`Nav_List relative flex flex-col lg:flex-row items-center gap-6 mr-0 lg:mr-8 mt-56 lg:mt-0  p-8  ${
-        navVisible ? "block bg-blue-950 "  : "hidden"
-      } lg:flex lg:static`}
-      >
-          
-     {navVisible && (
-       <FontAwesomeIcon icon={faXmark} onClick={handleClose} className=" absolute left-1 top-1 text-3xl cursor-pointer text-white  hover:text-orange-500 lg:hidden"/>
-     )}
+        {/* icon for opening nav on mobile */}
+        <FontAwesomeIcon
+          icon={faBars}
+          onClick={(event) => {
+            event.stopPropagation();
+            handleOpen();
+          }}
+          className="text-3xl cursor-pointer text-white hover:text-orange-500 lg:hidden"
+        />
+
+        {/* Navigation list with animation */}
+        <motion.ul
+          ref={NavRef}
+          initial={{ x: "-100%", opacity: 0 }}
+          animate={
+            isMobile
+              ? navVisible && NavInView
+                ? { x: 0, opacity: 1 }
+                : { x: "-100%", opacity: 0 }
+              : { x: 0, opacity: 1 }
+          }
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+          className={`Nav_List absolute top-0 left-0 w-full h-[60vh] flex flex-col lg:flex-row items-center gap-6 p-8
+            ${isMobile ? "bg-blue-950" : "lg:static"}
+            ${isMobile ? (navVisible ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none") : "opacity-100 pointer-events-auto"}
+          `}
+        >
+          {/* Close icon for mobile */}
+          {navVisible && isMobile && (
+            <FontAwesomeIcon
+              icon={faXmark}
+              onClick={handleClose}
+              className=" absolute left-1 top-1 text-3xl cursor-pointer text-white  hover:text-orange-500 lg:hidden"
+            />
+          )}
+
+          {/* Navigation links */}
           {["Home", "About", "Services", "Rooms", "Contact"].map(
             (item, index) => (
               <li key={index}>
                 <NavLink
                   to={`/${item.toLowerCase()}`}
+                  onClick={() => setNavVisible(false)}
                   className={({ isActive }) =>
                     isActive
                       ? "relative text-2xl text-orange-500 cursor-pointer after:absolute after:bottom-0 after:left-0 after:w-full after:h-1 after:bg-orange-500  rounded-full  after:transition-all after:duration-300  hover:after:w-full"
@@ -132,7 +191,7 @@ function NavigationList() {
               </li>
             )
           )}
-        </ul>
+        </motion.ul>
       </motion.div>
     </AnimationX>
   );
@@ -140,7 +199,10 @@ function NavigationList() {
 export default function Header() {
   return (
     <>
-      <section id="header" className=" bg-blue-950 fixed z-50 w-full container ">
+      <section
+        id="header"
+        className=" bg-blue-950 fixed z-50 w-full container "
+      >
         {/* Top header with contact info and social icons */}
         <AnimationX>
           <div className=" top-header w-full  lg:w-1/2 hidden  bg-white  lg:flex ml-auto justify-around items-center px-4 py-2  ">

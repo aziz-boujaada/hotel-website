@@ -179,7 +179,7 @@ export default function PopularRooms() {
         <SectionTitle />
 
         {/* ROOMS CARDS*/}
-        <AnimationXtoRight>
+        <AnimationY>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 py-6 ">
             {Rooms.map((room, index) => (
               <div
@@ -201,7 +201,7 @@ export default function PopularRooms() {
             ))}
           </div>
           <FormModal isOpen={modalOpen} isClose={handleCloseModal} />
-        </AnimationXtoRight>
+        </AnimationY>
       </section>
     </>
   );

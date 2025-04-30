@@ -8,9 +8,9 @@ export default function AnimationX({ children }) {
     return (
       <motion.div
       ref={ref}
-        initial={{ opacity: 0, x: -300 }}
-        animate={{ opacity: inView?1 :0, x:inView?0 :-300 }}
-        transition={{ duration: 2, ease: "easeInOut" }}
+        initial={{ opacity: 0, x: -100 }}
+        animate={{ opacity: inView?1 :0, x:inView?0 :-100 }}
+        transition={{ duration: 2, ease: easeInOut }}
       >
         {children}
       </motion.div>
