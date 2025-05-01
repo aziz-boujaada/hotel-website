@@ -12,7 +12,7 @@ export default function ContactPage() {
         <span className="text-orange-500">CONTACT</span> For Any Query
       </h1>
 
-      <div className="grid md:grid-cols-2 gap-8">
+      <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-8">
         
         {/* contact info and map*/}
         <div className="space-y-8">

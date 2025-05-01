@@ -57,7 +57,7 @@ export default function TestImonial() {
         style={{ backgroundImage: `url("hotel-carousel-2.jpg")` }}
       >
         <AnimationY>
-          <div className="bg-black bg-opacity-80 max-w-2xl mx-auto rounded-xl p-8 text-white text-center shadow-lg relative">
+          <div className="bg-black bg-opacity-80 max-w-2xl h-[400px] lg:h-[320px] mx-auto rounded-xl p-8 text-white text-center shadow-lg relative">
             <div className="text-orange-400 text-2xl mb-4">
               <FontAwesomeIcon
                 icon={currentTest.quotIcon}
@@ -82,20 +82,20 @@ export default function TestImonial() {
                   key={i}
                   onClick={() => setTestimonialScroll(i)}
                   className={`w-3 h-3 rounded-full ${
-                    testimonialScroll === i ? "bg-orange-500" : "bg-gray-400"
+                    testimonialScroll === i ? "bg-orange-500 w-8 " : "bg-gray-400"
                   }`}
                 />
               ))}
             </div>
 
             <div
-              className="absolute top-1/2 left-4 transform -translate-y-1/2 cursor-pointer text-white text-2xl hover:text-orange-600"
+              className="absolute top-1/2 left-3 transform -translate-y-1/2 cursor-pointer text-white text-2xl lg:text-3xl hover:text-orange-600"
               onClick={PrevTest}
             >
               ❮
             </div>
             <div
-              className="absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer text-white text-2xl hover:text-orange-600"
+              className="absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer text-white text-2xl lg:text-3xl hover:text-orange-600"
               onClick={NextTest}
             >
               ❯

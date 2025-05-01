@@ -116,7 +116,7 @@ function NavigationList() {
   // Check window width to define mobile or not
   useEffect(()=>{
     const checkIsMobile = () =>{
-     if( window.innerWidth > 768 ){
+     if( window.innerWidth <= 1024 ){
       setIsMobile(true);
      }else{
       setIsMobile(false)
@@ -159,7 +159,7 @@ function NavigationList() {
               : { x: 0, opacity: 1 }
           }
           transition={{ duration: 0.5, ease: "easeInOut" }}
-          className={`Nav_List absolute top-0 left-0 w-full h-[60vh] flex flex-col lg:flex-row items-center gap-6 p-8
+          className={`Nav_List absolute top-0 left-0 w-full h-[60vh] flex flex-col  lg:flex-row items-center gap-6 p-8
             ${isMobile ? "bg-blue-950" : "lg:static"}
             ${isMobile ? (navVisible ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none") : "opacity-100 pointer-events-auto"}
           `}
@@ -169,7 +169,7 @@ function NavigationList() {
             <FontAwesomeIcon
               icon={faXmark}
               onClick={handleClose}
-              className=" absolute left-1 top-1 text-3xl cursor-pointer text-white  hover:text-orange-500 lg:hidden"
+              className=" absolute left-1 top-1 text-3xl p-3 cursor-pointer text-white  hover:text-orange-500 lg:hidden"
             />
           )}
 
@@ -196,6 +196,7 @@ function NavigationList() {
     </AnimationX>
   );
 }
+
 export default function Header() {
   return (
     <>
@@ -215,7 +216,7 @@ export default function Header() {
         </AnimationX>
 
         {/* Bottom header with logo and navigation list */}
-        <div className="bottom_header header_hight  flex items-center justify-between lg:px-5 ">
+        <div className="bottom_header header_hight  flex items-center justify-between px-5 ">
           {/* Logo */}
           <Logo />
           {/* Navigation list */}

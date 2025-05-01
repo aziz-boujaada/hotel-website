@@ -78,9 +78,9 @@ export default function OurStaff() {
         {ourStaffInfo.map((item, index) => (
           <div
             key={index}
-            className=" group border-[1px] border-gray-300 shadow-xl relative cursor-pointer transition-all duration-300 hover:scale-105 "
+            className=" group border border-gray-300 shadow-xl relative cursor-pointer transition-all duration-300 hover:scale-105 "
           >
-            <img src={item.staffImage} alt={`${item.StaffRole} image`} />
+            <img src={item.staffImage} alt={`${item.StaffRole} image`}className="p-3" />
             <h2 className="text-2xl text-orange-500 font-Parkinsans font-semibold pt-10">
               {item.staffName}
             </h2>

@@ -25,7 +25,7 @@ export default function HeroSection() {
       setCurrentImage(
         (preventImage) => (preventImage + 1) % HotelImages.length
       );
-    }, 6000);
+    }, 10000);
     return () => clearInterval(interval);
   }, []);
 
@@ -41,7 +41,7 @@ export default function HeroSection() {
         (preventImage - 1 + HotelImages.length) % HotelImages.length
     );
   };
-
+  const Image = HotelImages[CurrentImage]
   return (
     <>
       {/* Fullscreen background hero section with image slider */}
@@ -76,20 +76,30 @@ export default function HeroSection() {
           {/* call to action buttons */}
           <AnimationY>
             <CallToActionButtons />
+          <div className="flex justify-center gap-4">
+             {HotelImages.map((_ ,i)=>(
+              <button key={i}
+               onClick={ ()=>setCurrentImage(i)}
+               className={`w-3 h-3 rounded-full  mt-6 ${
+                CurrentImage === i ? "bg-orange-500 w-8" : "bg-gray-300" 
+               }`}
+               />
+             ))}
+          </div>
           </AnimationY>
         </div>
 
         {/* Navigation buttons for the slider */}
         <button
           onClick={handlePrev}
-          className="absolute left-1 lg:left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-40 rounded-full text-2xl text-white p-3 hover:bg-opacity-70"
+          className="absolute left-[20%] lg:left-4 top-[77%] lg:top-1/2 transform -translate-y-1/2 bg-black bg-opacity-40 rounded-full text-2xl text-white p-3 hover:bg-opacity-70"
           aria-label="Previous slide button"
         >
           <FontAwesomeIcon icon={faChevronLeft} />
         </button>
         <button
           onClick={handleNext}
-          className="absolute right-1 lg:right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-40 rounded-full text-2xl text-white p-3 hover:bg-opacity-70"
+          className="absolute right-[20%] lg:right-4 top-[77%] lg:top-1/2 transform -translate-y-1/2 bg-black bg-opacity-40 rounded-full text-2xl text-white p-3 hover:bg-opacity-70"
           aria-label="Next slide button"
         >
           <FontAwesomeIcon icon={faChevronRight} />
