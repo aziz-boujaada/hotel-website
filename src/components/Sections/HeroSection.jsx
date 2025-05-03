@@ -13,9 +13,9 @@ import CallToActionButtons from "../Forms/CTA";
 
 export default function HeroSection() {
   const HotelImages = [
-    "hotel-carousel-1.jpg",
-    "hotel-carousel-2.jpg",
-    "hotel-carousel-3.jpg",
+    "/hotel-carousel-1.jpg",
+    "/hotel-carousel-2.jpg",
+    "/hotel-carousel-3.jpg",
   ];
   const [CurrentImage, setCurrentImage] = useState(0);
 

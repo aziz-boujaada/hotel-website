@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const ourStaffInfo = [
   {
-    staffImage: "team-1.jpg",
+    staffImage: "/team-1.jpg",
     staffName: "Aziz Boujaada",
     StaffRole: " Hotel President",
     socialMedias: [
@@ -20,7 +20,7 @@ const ourStaffInfo = [
     ],
   },
   {
-    staffImage: "team-2.jpg",
+    staffImage: "/team-2.jpg",
     staffName: "Aziz Boujaada",
     StaffRole: " Hotel President",
     socialMedias: [
@@ -30,7 +30,7 @@ const ourStaffInfo = [
     ],
   },
   {
-    staffImage: "team-3.jpg",
+    staffImage: "/team-3.jpg",
     staffName: "Aziz Boujaada",
     StaffRole: " Hotel President",
     socialMedias: [
@@ -40,7 +40,7 @@ const ourStaffInfo = [
     ],
   },
   {
-    staffImage: "team-4.jpg",
+    staffImage: "/team-4.jpg",
     staffName: "Aziz Boujaada",
     StaffRole: " Hotel President",
     socialMedias: [

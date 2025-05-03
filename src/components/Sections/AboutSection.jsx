@@ -90,24 +90,24 @@ export default function AboutSection() {
           <div className="grid  grid-cols-2  gap-2  ">
             <AnimationY>
               <img
-                src="about-2.jpg"
+                src="/about-2.jpg"
                 alt="hotel image"
                 className="w-[400px] h-[300px] mt-12 shadow-lg"
               />
             </AnimationY>
             <AnimationXtoRight>
               <img
-                src="about-1.jpg"
+                src="/about-1.jpg"
                 alt="hotel image"
                 className="w-[300px] h-[250px]  mt-24 shadow-lg"
               />
             </AnimationXtoRight>
             <AnimationY>
-              <img src="about-3.jpg" alt="hotel image" className="shadow-lg" />
+              <img src="/about-3.jpg" alt="hotel image" className="shadow-lg" />
             </AnimationY>
             <AnimationXtoRight>
               <img
-                src="about-4.jpg"
+                src="/about-4.jpg"
                 alt="hotel image"
                 className="w-[400px] h-[250px] shadow-lg"
               />
