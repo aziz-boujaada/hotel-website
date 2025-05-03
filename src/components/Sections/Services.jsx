@@ -1,4 +1,5 @@
 import AnimationX from "../Animations/AnimationX";
+import AnimationXtoRight from "../Animations/AnimationXtoRight";
 import AnimationY from "../Animations/AnimationY";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -76,7 +77,7 @@ export default function OurServices(){
           <AnimationY>
             <SectionTitle/>
             </AnimationY>
-            <AnimationX>
+            <AnimationXtoRight>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-9 mt-10">
           {ourServices.map((item ,index)=>(
             <div key={index} className="p-5 bg-white shadow-2xl text-center hover:bg-orange-500 hover:text-white transition duration-300  group">
@@ -86,7 +87,7 @@ export default function OurServices(){
             </div>
           ))}
           </div>
-          </AnimationX>
+          </AnimationXtoRight>
         </section>
         </>
     )

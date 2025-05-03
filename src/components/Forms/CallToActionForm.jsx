@@ -1,11 +1,13 @@
 // CALL TO ACTION FORM
 import AnimationX from "../Animations/AnimationX";
 export default function CallToActionForm() {
+ 
     return (
       <>
         <AnimationX>
+         
           <section className="CTA_form relative lg:absolute z-30 left-1/2 bottom-[-50px] transform -translate-x-1/2 bg-white p-8 rounded-lg shadow-2xl  w-auto   ">
-            <form action="">
+            <form >
               <div className="form_inputs relative flex flex-col lg:flex-row justify-center gap-12 ">
                 <input
                   type="date"

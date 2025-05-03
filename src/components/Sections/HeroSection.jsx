@@ -75,7 +75,7 @@ export default function HeroSection() {
           </AnimationX>
           {/* call to action buttons */}
           <AnimationY>
-            <CallToActionButtons />
+            <CallToActionButtons/>
           <div className="flex justify-center gap-4">
              {HotelImages.map((_ ,i)=>(
               <button key={i}

@@ -5,6 +5,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import AnimationY from "../Animations/AnimationY";
 import AnimationX from "../Animations/AnimationX";
+import AnimationXtoRight from "../Animations/AnimationXtoRight";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const ourStaffInfo = [
@@ -73,7 +74,7 @@ export default function OurStaff() {
   return (
     <section className="mt-[6em] pb-8 relative">
       <SectionTitle />
-        <AnimationX>
+        <AnimationXtoRight>
       <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 text-center px-5 mt-6 ">
         {ourStaffInfo.map((item, index) => (
           <div
@@ -103,7 +104,7 @@ export default function OurStaff() {
           </div>
         ))}
       </div>
-        </AnimationX>
+        </AnimationXtoRight>
     </section>
   );
 }

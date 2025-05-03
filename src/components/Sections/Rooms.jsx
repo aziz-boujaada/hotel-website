@@ -2,6 +2,7 @@ import AnimationX from "../Animations/AnimationX";
 import AnimationY from "../Animations/AnimationY";
 import AnimationXtoRight from "../Animations/AnimationXtoRight";
 import FormModal from "../Forms/FormModal";
+import SuccessBoking from "../Alerts/SuccessBoking"
 import {
   faBed,
   faBath,
@@ -167,6 +168,17 @@ export default function PopularRooms() {
   ];
 
   const [modalOpen, setModalOpen] = useState(false);
+  const [isSuccess , setIsSuccess] = useState(false);
+
+   useEffect(()=>{
+    const timeOut = setTimeout(()=>{
+      setIsSuccess(false)
+    },3000)
+    return ()=>{
+      clearTimeout(timeOut)
+    }
+   },[isSuccess]);
+
   const handleOpenModal = () => {
     setModalOpen(true);
   };
@@ -175,11 +187,12 @@ export default function PopularRooms() {
   };
   return (
     <>
+    {isSuccess && <SuccessBoking isSuccess={isSuccess}/>}
       <section className=" relative mt-[7em]">
         <SectionTitle />
 
         {/* ROOMS CARDS*/}
-        <AnimationY>
+        <AnimationXtoRight>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 py-6 ">
             {Rooms.map((room, index) => (
               <div
@@ -200,8 +213,8 @@ export default function PopularRooms() {
               </div>
             ))}
           </div>
-          <FormModal isOpen={modalOpen} isClose={handleCloseModal} />
-        </AnimationY>
+          <FormModal isOpen={modalOpen} isClose={handleCloseModal} setIsSuccess={setIsSuccess} />
+        </AnimationXtoRight>
       </section>
     </>
   );

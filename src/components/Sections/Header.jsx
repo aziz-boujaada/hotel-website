@@ -202,7 +202,7 @@ export default function Header() {
     <>
       <section
         id="header"
-        className=" bg-blue-950 fixed z-50 w-full container "
+        className=" bg-blue-950 fixed z-40 w-full container "
       >
         {/* Top header with contact info and social icons */}
         <AnimationX>

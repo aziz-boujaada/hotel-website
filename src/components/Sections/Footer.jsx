@@ -147,9 +147,11 @@ function QuickLinks() {
 // Copyright component
 function Copyright(){
   return(
+    <AnimationXtoRight>
     <div className="p-4 text-white text-center">
-      © <a href="#" className="border-b hover:text-orange-400" target="_blank">Atlas View </a>, All Right Reserved. Designed By <a href="https://aziz-boujaada.github.io/First-React-Portfolio/" className="border-b hover:text-orange-400" target="_blank"> AZi Ze Boujaada</a>
+      © <a href="#" className="border-b hover:text-orange-400" target="_blank">Atlas View </a>2025, All Right Reserved. Designed By <a href="https://aziz-boujaada.github.io/First-React-Portfolio/" className="border-b hover:text-orange-400" target="_blank"> AZi Ze Boujaada</a>
     </div>
+    </AnimationXtoRight>
   )
 }
 

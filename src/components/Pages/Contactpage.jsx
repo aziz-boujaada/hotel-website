@@ -2,21 +2,26 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import HeroSection from "../Sections/HeroSection";
 import Footer from "../Sections/Footer";
+import AnimationY from "../Animations/AnimationY";
+import AnimationX from "../Animations/AnimationX";
 
 export default function ContactPage() {
   return (
     <>
     <HeroSection/>
+    
     <div className="bg-gray-50 p-8 min-h-screen mt-10">
+      <AnimationX>
       <h1 className="text-4xl font-bold text-center mb-12">
         <span className="text-orange-500">CONTACT</span> For Any Query
       </h1>
-
+      </AnimationX>
       <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-8">
         
         {/* contact info and map*/}
         <div className="space-y-8">
           
+     <AnimationY>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
             <div>
               <h2 className="text-lg font-bold text-orange-500 mb-2">BOOKING</h2>
@@ -42,8 +47,9 @@ export default function ContactPage() {
               </p>
             </div>
           </div>
-
+         </AnimationY>
           {/* Google Map */}
+          <AnimationY>
           <div className="h-64">
             <iframe
               title="Location Map"
@@ -56,10 +62,11 @@ export default function ContactPage() {
               referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
           </div>
-
+          </AnimationY>
         </div>
 
         {/* form*/}
+        <AnimationY>
         <div className="bg-white shadow-md rounded-lg p-8 space-y-6">
           <div className="flex flex-col md:flex-row gap-4">
             <input
@@ -93,9 +100,10 @@ export default function ContactPage() {
             SEND MESSAGE
           </button>
         </div>
-
+        </AnimationY>
       </div>
     </div>
+    
    <Footer/>
     </>
    
