@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import HeroSection from "../Sections/HeroSection";
+import CallToActionForm from "../Forms/CallToActionForm"
 import Footer from "../Sections/Footer";
 import AnimationY from "../Animations/AnimationY";
 import AnimationX from "../Animations/AnimationX";
@@ -9,8 +10,8 @@ export default function ContactPage() {
   return (
     <>
     <HeroSection/>
-    
-    <div className="bg-gray-50 p-8 min-h-screen mt-10">
+    <CallToActionForm/>
+    <div className="bg-gray-50 p-8 min-h-screen mt-12">
       <AnimationX>
       <h1 className="text-4xl font-bold text-center mb-12">
         <span className="text-orange-500">CONTACT</span> For Any Query

@@ -13,9 +13,9 @@ import CallToActionButtons from "../Forms/CTA";
 
 export default function HeroSection() {
   const HotelImages = [
-    "/hotel-carousel-1.jpg",
-    "/hotel-carousel-2.jpg",
-    "/hotel-carousel-3.jpg",
+    "/hotel-website/hotel-carousel-1.jpg",
+    "/hotel-website/hotel-carousel-2.jpg",
+    "/hotel-website/hotel-carousel-3.jpg",
   ];
   const [CurrentImage, setCurrentImage] = useState(0);
 
@@ -41,7 +41,7 @@ export default function HeroSection() {
         (preventImage - 1 + HotelImages.length) % HotelImages.length
     );
   };
-  const Image = HotelImages[CurrentImage]
+  
   return (
     <>
       {/* Fullscreen background hero section with image slider */}

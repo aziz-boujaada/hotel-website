@@ -134,7 +134,7 @@ export default function PopularRooms() {
   const Rooms = [
     {
       id: 1,
-      img: "/room-1.jpg",
+      img: "/hotel-website/room-1.jpg",
       type: "Junior Suite",
       price: 100,
       rating: 5,
@@ -145,7 +145,7 @@ export default function PopularRooms() {
     },
     {
       id: 2,
-      img: "/room-2.jpg",
+      img: "/hotel-website/room-2.jpg",
       type: "Executive Suite",
       price: 100,
       rating: 4,
@@ -156,7 +156,7 @@ export default function PopularRooms() {
     },
     {
       id: 3,
-      img: "/room-3.jpg",
+      img: "/hotel-website/room-3.jpg",
       type: "Super Deluxe",
       price: 100,
       rating: 4,

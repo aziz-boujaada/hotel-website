@@ -4,13 +4,12 @@ import {
   faXTwitter,
 } from "@fortawesome/free-brands-svg-icons";
 import AnimationY from "../Animations/AnimationY";
-import AnimationX from "../Animations/AnimationX";
 import AnimationXtoRight from "../Animations/AnimationXtoRight";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const ourStaffInfo = [
   {
-    staffImage: "/team-1.jpg",
+    staffImage: "/hotel-website/team-1.jpg",
     staffName: "Aziz Boujaada",
     StaffRole: " Hotel President",
     socialMedias: [
@@ -20,7 +19,7 @@ const ourStaffInfo = [
     ],
   },
   {
-    staffImage: "/team-2.jpg",
+    staffImage: "/hotel-website/team-2.jpg",
     staffName: "Aziz Boujaada",
     StaffRole: " Hotel President",
     socialMedias: [
@@ -30,7 +29,7 @@ const ourStaffInfo = [
     ],
   },
   {
-    staffImage: "/team-3.jpg",
+    staffImage: "/hotel-website/team-3.jpg",
     staffName: "Aziz Boujaada",
     StaffRole: " Hotel President",
     socialMedias: [
@@ -40,7 +39,7 @@ const ourStaffInfo = [
     ],
   },
   {
-    staffImage: "/team-4.jpg",
+    staffImage: "/hotel-website/team-4.jpg",
     staffName: "Aziz Boujaada",
     StaffRole: " Hotel President",
     socialMedias: [

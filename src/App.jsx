@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Sections/Header";
 import ScrollTop from "./components/Animations/scrollTop";
 import AboutPage from "./components/Pages/AboutPage";
@@ -11,19 +11,19 @@ import ContactPage from "./components/Pages/ContactPage";
 export default function App() {
   return (
     <section className="container">
-    <BrowserRouter>
+    <Router>
       <Header/>
       <Routes>
-       
-        <Route path="/home" element={<HomePage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/services" element={<ServicesPage />} />
+        <Route path="/" element={<HomePage/>} />
+        <Route path="/home" element={<HomePage/>} />
+        <Route path="/about" element={<AboutPage/>} />
+        <Route path="/services" element={<ServicesPage/>} />
         <Route path="/rooms" element={<RoomsPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <ScrollTop />
-    </BrowserRouter>
+    </Router>
   </section>
   );
 }
