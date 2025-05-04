@@ -1,12 +1,43 @@
-# React + Vite
+# 🏨 Atlas View Hotel – React Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A complete, responsive hotel booking website built with **React.js** and **Tailwind CSS**. The project simulates a modern hotel site with form submission, client testimonials, booking details, and smooth UX/UI design.
 
-Currently, two official plugins are available:
+## 🔗 Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+👉 [Visit the Website](https://aziz-boujaada.github.io/hotel-website/)
 
-## Expanding the ESLint configuration
+## 🧰 Technologies Used
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- ⚛️ React.js (with functional components and hooks)
+- 🎨 Tailwind CSS (utility-first styling)
+- 🧭 React Router (for routing between pages)
+- 💡 FontAwesome Icons
+- 🌍 Deployed on GitHub Pages
+
+## ✨ Features
+
+- Responsive layout for all screen sizes
+- Booking modal with form validation
+- Custom success message after form submission
+- Hero section with CTA
+- Testimonials (client reviews)
+- Room options and booking plans
+- About section
+- Footer with contact info
+- Page navigation using React Router
+
+## 📦 Installation & Usage
+
+```bash
+# Clone the repo
+git clone https://github.com/aziz-boujaada/hotel-website.git
+
+# Navigate to the project directory
+cd hotel-website
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm run dev
+
