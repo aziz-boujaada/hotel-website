@@ -188,7 +188,7 @@ export default function PopularRooms() {
   return (
     <>
     {isSuccess && <SuccessBoking isSuccess={isSuccess}/>}
-      <section className=" relative mt-[7em]">
+      <section className=" relative mt-[12em] lg:mt[7em]">
         <SectionTitle />
 
         {/* ROOMS CARDS*/}

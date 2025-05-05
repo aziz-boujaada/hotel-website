@@ -73,7 +73,7 @@ function SectionTitle() {
 export default function OurServices(){
     return(
         <>
-        <section className="pt-[6em] ">
+        <section className="mt-[12em] lg:mt[7em]">
           <AnimationY>
             <SectionTitle/>
             </AnimationY>

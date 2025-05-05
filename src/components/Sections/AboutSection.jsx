@@ -39,7 +39,7 @@ export default function AboutSection() {
 
   return (
     <>
-      <section className="mt-[12em]">
+      <section className="mt-[12em] lg:mt[7em] ">
         <div className="grid grid-cols-1 lg:flex gap-10  justify-between">
           <div>
             <AnimationX>
