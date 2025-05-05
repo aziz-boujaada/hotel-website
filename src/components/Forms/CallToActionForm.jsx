@@ -1,12 +1,12 @@
 // CALL TO ACTION FORM
-import AnimationX from "../Animations/AnimationX";
+import AnimationY from "../Animations/AnimationY";
 export default function CallToActionForm() {
  
     return (
       <>
-        <AnimationX>
+        <AnimationY>
          
-          <section className="CTA_form relative lg:absolute z-30 left-1/2 bottom-[-50px] transform -translate-x-1/2 bg-white p-8 rounded-lg shadow-2xl  w-auto   ">
+          <section className="CTA_form relative lg:absolute z-30 left-1/2 bottom-[-180px] transform -translate-x-1/2 bg-white p-8 rounded-lg shadow-2xl  w-auto   ">
             <form >
               <div className="form_inputs relative flex flex-col lg:flex-row justify-center gap-12 ">
                 <input
@@ -51,7 +51,7 @@ export default function CallToActionForm() {
               </div>
             </form>
           </section>
-        </AnimationX>
+        </AnimationY>
       </>
     );
   }

@@ -45,7 +45,7 @@ function ContactInfo() {
 function SocialIcons() {
   return (
     <AnimationX>
-      <div className="hotel_social flex gap-4">
+      <div className="hotel_social flex gap-4 z-50">
         {HotelSocialMedias.map((socialItem, index) => (
           <a
             key={index}
@@ -202,7 +202,7 @@ export default function Header() {
     <>
       <section
         id="header"
-        className=" bg-blue-950 fixed z-40 w-full container "
+        className=" bg-blue-950 sticky top-0 z-40 w-full container "
       >
         {/* Top header with contact info and social icons */}
         <AnimationX>
@@ -216,7 +216,7 @@ export default function Header() {
         </AnimationX>
 
         {/* Bottom header with logo and navigation list */}
-        <div className="bottom_header header_hight  flex items-center justify-between px-5 ">
+        <div className="bottom_header header_hight  flex items-center justify-between px-12 ">
           {/* Logo */}
           <Logo />
           {/* Navigation list */}

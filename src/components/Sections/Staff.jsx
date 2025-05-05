@@ -10,45 +10,46 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const ourStaffInfo = [
   {
     staffImage: "/hotel-website/team-1.jpg",
-    staffName: "Aziz Boujaada",
-    StaffRole: " Hotel President",
+    staffName: "William Scott",
+    StaffRole: "General Manager",
     socialMedias: [
       { socialIcon: faFacebook, socialLink: "facebook" },
-      { socialIcon: faInstagram, socialLink: "Instagram" },
+      { socialIcon: faInstagram, socialLink: "instagram" },
       { socialIcon: faXTwitter, socialLink: "x" },
     ],
   },
   {
     staffImage: "/hotel-website/team-2.jpg",
-    staffName: "Aziz Boujaada",
-    StaffRole: " Hotel President",
+    staffName: "Michael Johnson",
+    StaffRole: "Executive Chef",
     socialMedias: [
       { socialIcon: faFacebook, socialLink: "facebook" },
-      { socialIcon: faInstagram, socialLink: "Instagram" },
+      { socialIcon: faInstagram, socialLink: "instagram" },
       { socialIcon: faXTwitter, socialLink: "x" },
     ],
   },
   {
     staffImage: "/hotel-website/team-3.jpg",
-    staffName: "Aziz Boujaada",
-    StaffRole: " Hotel President",
+    staffName: "David Turner",
+    StaffRole: "Reception Manager",
     socialMedias: [
       { socialIcon: faFacebook, socialLink: "facebook" },
-      { socialIcon: faInstagram, socialLink: "Instagram" },
+      { socialIcon: faInstagram, socialLink: "instagram" },
       { socialIcon: faXTwitter, socialLink: "x" },
     ],
   },
   {
     staffImage: "/hotel-website/team-4.jpg",
-    staffName: "Aziz Boujaada",
-    StaffRole: " Hotel President",
+    staffName: "Christopher Lee",
+    StaffRole: "Housekeeping Supervisor",
     socialMedias: [
       { socialIcon: faFacebook, socialLink: "facebook" },
-      { socialIcon: faInstagram, socialLink: "Instagram" },
+      { socialIcon: faInstagram, socialLink: "instagram" },
       { socialIcon: faXTwitter, socialLink: "x" },
     ],
   },
 ];
+
 //section title
 function SectionTitle() {
   return (
@@ -89,7 +90,7 @@ export default function OurStaff() {
             </h2>
 
             {item.socialMedias && (
-              <div className="absolute flex gap-3 bottom-[65px] left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 group-hover:translate-y-[-30px] transition-all duration-300 ">
+              <div className="absolute flex gap-3 bottom-[100px] left-1/2 transform -translate-x-1/2 opacity-1 lg:opacity-0 lg:group-hover:opacity-100 lg:group-hover:translate-y-[-30px] transition-all duration-300 ">
                 {item.socialMedias.map((media, idx) => (
                   <a key={idx} href= {`https://www.${media.socialLink.toLowerCase()}.com`}  target="_blank"
                   rel="noopener noreferrer">
