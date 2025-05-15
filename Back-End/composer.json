@@ -1,0 +1,14 @@
+{
+    "name": "a-zize/hotel-website",
+    "description": "hotel-reservation-system",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Aziz boujaada",
+            "email": "azizboujaada87@gmail.com"
+        }
+    ],  
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
+}

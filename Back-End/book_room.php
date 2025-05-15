@@ -1,0 +1,72 @@
+<?php
+
+header("Access-Control-Allow-Origin:*");
+header("Access-Control-Allow-Methods: GET , POST , PUT , DELETE");
+header("Access-Control-Allow-Headers: Content-Type");
+header('Content-Type: application/json');
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+
+    require_once "config.php";
+    $data = json_decode(file_get_contents("php://input"), true);
+
+    if (!isset($data['username'], $data['email'], $data['check_in'], $data['check_out'], $data['adult'], $data['room_type'])) {
+        echo json_encode(["success" => false, "message" => "Missing require fields"]);
+        exit;
+    }
+
+    $username = $conn->real_escape_string($data['username']);
+    $email = $conn->real_escape_string($data['email']);
+    $adult = (int)$data['adult'];
+    $children = isset($data['children']) ? (int)$data['children'] : 0;
+    $room_type =$data['room_type'];
+
+    if(!preg_match("/^[a-zA-Z ]+$/" ,$username)){
+        echo json_encode(["success" => false ,"message" => "username must be contain letter only (no numbers or symbols)" ]);
+        exit;
+    }
+
+    if(!filter_var($data['email'] , FILTER_VALIDATE_EMAIL)){
+        echo json_encode(["success" => false , "message" => "invalid email address"]);
+        exit;
+    }
+
+
+    $check_in = strtotime($data['check_in']);
+    $check_out = strtotime($data['check_out']);
+    if($check_in >= $check_out){
+        echo json_encode(["success" => false, "message" =>"Check-out date must be after the check-in date"]);
+        exit;
+    }
+
+    $check_in_formatted = date("Y-m-d" , $check_in);
+    $check_out_formatted = date("Y-m-d" , $check_out);
+
+    $checkEmail = $conn->prepare("SELECT id FROM book_room WHERE email = ?");
+    $checkEmail->bind_param("s" , $email);
+    $checkEmail->execute();
+    $checkEmail->store_result();
+    if($checkEmail->num_rows() > 0){
+        $conn->close();
+        echo json_encode(["success" => false, "message" => "This Email Already exists "]);
+        exit;
+    }
+    
+
+    $sql = "INSERT INTO book_room (username ,email , check_in , check_out , adult , children ,room_type )VALUES(? ,? , ? , ?  , ? , ? , ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ssssiis", $username, $email,$check_in_formatted, $check_out_formatted , $adult, $children , $room_type);
+    if ($stmt->execute()){
+        $conn->close();
+        echo json_encode(["success" => true, "message" => ""]);
+        exit;
+    }else {
+        $conn->close();
+        echo json_encode(["success" => false, "message" => "reservation failed"]);
+        exit;
+    }
+} else {
+    echo json_encode([ "success"=>false ,"message" => "Invalid Request method"]);
+    exit;
+}

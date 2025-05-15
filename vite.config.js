@@ -5,4 +5,9 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   base:'/hotel-website/',
   plugins: [react()],
+  server :{
+    proxy:{
+      '/book_room': 'http://localhost',
+    }
+  }
 })
