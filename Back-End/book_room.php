@@ -67,6 +67,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit;
     }
 } else {
-    echo json_encode([ "success"=>false ,"message" => "Invalid Request method"]);
+    echo json_encode([ "success"=>false ,"message" => "Invalid Request method (get)"]);
     exit;
 }
+
+
+

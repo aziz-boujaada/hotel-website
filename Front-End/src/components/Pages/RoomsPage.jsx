@@ -3,6 +3,7 @@ import CallToActionForm from "../Forms/CallToActionForm";
 import Rooms from "../Sections/Rooms"
 import TestImonial from "../Sections/Testimonial";
 import Footer from "../Sections/Footer"
+import AdminDashboard from "../dashboard/AdminDashboard";
 
 export default function RoomsPage(){
     return(
@@ -12,6 +13,7 @@ export default function RoomsPage(){
           <Rooms/>
           <TestImonial/>
           <Footer/>
+          <AdminDashboard />
         </>
     )
 }

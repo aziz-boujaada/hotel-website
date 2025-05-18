@@ -8,6 +8,7 @@ import HomePage from "./components/Pages/Homepage";
 import NotFoundPage from "./components/Pages/NotFoundPage";
 import ContactPage from "./components/Pages/ContactPage";
 
+
 export default function App() {
   return (
     <section className="container">
@@ -23,6 +24,7 @@ export default function App() {
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <ScrollTop />
+    
     </Router>
   </section>
   );
