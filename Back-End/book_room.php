@@ -1,5 +1,7 @@
 <?php
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 header("Access-Control-Allow-Origin:*");
 header("Access-Control-Allow-Methods: GET , POST , PUT , DELETE");
 header("Access-Control-Allow-Headers: Content-Type");
@@ -11,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     require_once "config.php";
     $data = json_decode(file_get_contents("php://input"), true);
 
-    if (!isset($data['username'], $data['email'], $data['check_in'], $data['check_out'], $data['adult'], $data['room_type'])) {
+    if (!isset($data['username'], $data['email'], $data['check_in'], $data['check_out'], $data['adult'], $data['room_type'] )) {
         echo json_encode(["success" => false, "message" => "Missing require fields"]);
         exit;
     }
@@ -21,6 +23,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $adult = (int)$data['adult'];
     $children = isset($data['children']) ? (int)$data['children'] : 0;
     $room_type =$data['room_type'];
+    $book_state = $conn->real_escape_string($data['state']);
+
 
     if(!preg_match("/^[a-zA-Z ]+$/" ,$username)){
         echo json_encode(["success" => false ,"message" => "username must be contain letter only (no numbers or symbols)" ]);
@@ -54,9 +58,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     
 
-    $sql = "INSERT INTO book_room (username ,email , check_in , check_out , adult , children ,room_type )VALUES(? ,? , ? , ?  , ? , ? , ?)";
+    $sql = "INSERT INTO book_room (username ,email , check_in , check_out , adult , children ,room_type , status )VALUES(? ,? , ? , ?  , ? , ? , ? , ?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssssiis", $username, $email,$check_in_formatted, $check_out_formatted , $adult, $children , $room_type);
+    $stmt->bind_param("ssssiiss", $username, $email,$check_in_formatted, $check_out_formatted , $adult, $children , $room_type , $book_state);
     if ($stmt->execute()){
         $conn->close();
         echo json_encode(["success" => true, "message" => ""]);

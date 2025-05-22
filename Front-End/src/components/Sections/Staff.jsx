@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const ourStaffInfo = [
   {
-    staffImage: "/hotel-website/team-1.jpg",
+    staffImage: "/hotel-website/Front-End/public/team-1.jpg",
     staffName: "William Scott",
     StaffRole: "General Manager",
     socialMedias: [
@@ -19,7 +19,7 @@ const ourStaffInfo = [
     ],
   },
   {
-    staffImage: "/hotel-website/team-2.jpg",
+    staffImage: "/hotel-website/Front-End/public/team-2.jpg",
     staffName: "Michael Johnson",
     StaffRole: "Executive Chef",
     socialMedias: [
@@ -29,7 +29,7 @@ const ourStaffInfo = [
     ],
   },
   {
-    staffImage: "/hotel-website/team-3.jpg",
+    staffImage: "/hotel-website/Front-End/public/team-3.jpg",
     staffName: "David Turner",
     StaffRole: "Reception Manager",
     socialMedias: [
@@ -39,7 +39,7 @@ const ourStaffInfo = [
     ],
   },
   {
-    staffImage: "/hotel-website/team-4.jpg",
+    staffImage: "/hotel-website/Front-End/public/team-4.jpg",
     staffName: "Christopher Lee",
     StaffRole: "Housekeeping Supervisor",
     socialMedias: [

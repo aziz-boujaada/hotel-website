@@ -9,6 +9,7 @@ import {
   faPhone,
   faXmark,
   faBars,
+  faCalendarAlt
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faFacebook,
@@ -19,7 +20,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import AnimationXtoRight from "../Animations/AnimationXtoRight";
 import AnimationX from "../Animations/AnimationX";
-import AnimationY from "../Animations/AnimationY";
+
 
 // Social media links for the hotel
 const HotelSocialMedias = [
@@ -78,8 +79,21 @@ function Logo() {
     </>
   );
 }
-function NavigationList() {
+// Open user  reservations dashboard
+  function OpenStatesReservation({setStatusOpen}){
+         
+         return(
+             <>
+              <FontAwesomeIcon  icon={faCalendarAlt}
+           onClick={()=>setStatusOpen(true)}
+           className=" text-2xl text-white bg-orange-500 p-3 cursor-pointer rounded-full hover:bg-white hover:text-orange-500 transition-all after:duration-300 "/>
+          
+             </>
+         )
+  } 
+function NavigationList({bookings , setStatusOpen}) {
   const [navVisible, setNavVisible] = useState(false);
+   
 
   // Close navigation when clicking outside the nav list
   useEffect(() => {
@@ -131,6 +145,7 @@ function NavigationList() {
       }
   }, [])
 
+
   return (
     <AnimationX>
       <motion.div
@@ -174,7 +189,8 @@ function NavigationList() {
           )}
 
           {/* Navigation links */}
-          {["Home", "About", "Services", "Rooms", "Contact"].map(
+         
+          {["Home", "About", "Services", "Rooms", "Contact" ].map(
             (item, index) => (
               <li key={index}>
                 <NavLink
@@ -191,13 +207,18 @@ function NavigationList() {
               </li>
             )
           )}
+           <li>
+
+           <OpenStatesReservation bookings={bookings} setStatusOpen={setStatusOpen}/>
+           </li>
         </motion.ul>
+
       </motion.div>
     </AnimationX>
   );
 }
 
-export default function Header() {
+export default function Header({bookings , setStatusOpen}) {
   return (
     <>
       <section
@@ -220,7 +241,8 @@ export default function Header() {
           {/* Logo */}
           <Logo />
           {/* Navigation list */}
-          <NavigationList />
+          <NavigationList bookings={bookings} setStatusOpen={setStatusOpen} />
+
         </div>
       </section>
     </>

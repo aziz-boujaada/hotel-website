@@ -8,13 +8,13 @@ import Staff from "../Sections/Staff";
 import Footer from "../Sections/Footer";
 import CallToActionForm from "../Forms/CallToActionForm";
 
- export default function HomePage(){
+ export default function HomePage({setConfirmedBookings}){
     return(
         <>
         <HeroSection />
         <CallToActionForm />
         <AboutSection/>
-        <Rooms/>
+        <Rooms setConfirmedBookings={setConfirmedBookings}/>
         <Services/>
         <TestImonial />
         <Staff />

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Sections/Header";
 import ScrollTop from "./components/Animations/scrollTop";
@@ -7,25 +8,61 @@ import RoomsPage from "./components/Pages/RoomsPage";
 import HomePage from "./components/Pages/Homepage";
 import NotFoundPage from "./components/Pages/NotFoundPage";
 import ContactPage from "./components/Pages/ContactPage";
-
+import ReservationStatu from "./components/dashboard/ReservationStatu";
 
 export default function App() {
+  
+  const [statusOpen, setStatusOpen] = useState(false);
+  const [confirmedBookings, setConfirmedBookings] = useState([]);
+
+  const handleCloseStatus = () => setStatusOpen(false);
+
   return (
     <section className="container">
-    <Router>
-      <Header/>
-      <Routes>
-        <Route path="/" element={<HomePage/>} />
-        <Route path="/home" element={<HomePage/>} />
-        <Route path="/about" element={<AboutPage/>} />
-        <Route path="/services" element={<ServicesPage/>} />
-        <Route path="/rooms" element={<RoomsPage />} />
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-      <ScrollTop />
-    
-    </Router>
-  </section>
+      <Router>
+      
+        <Header
+          bookings={confirmedBookings}
+          setStatusOpen={setStatusOpen}
+        />
+   
+        <ReservationStatu
+          bookings={confirmedBookings}
+          statusOpen={statusOpen}
+          onClose={handleCloseStatus}
+        />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <HomePage
+                setConfirmedBookings={setConfirmedBookings}
+              />
+            }
+          />
+          <Route
+            path="/home"
+            element={
+              <HomePage
+                setConfirmedBookings={setConfirmedBookings}
+              />
+            }
+          />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/services" element={<ServicesPage />} />
+          <Route
+            path="/rooms"
+            element={
+              <RoomsPage
+                setConfirmedBookings={setConfirmedBookings}
+              />
+            }
+          />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+        <ScrollTop />
+      </Router>
+    </section>
   );
 }

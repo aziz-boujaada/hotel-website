@@ -13,9 +13,9 @@ import CallToActionButtons from "../Forms/CTA";
 
 export default function HeroSection() {
   const HotelImages = [
-    "/hotel-website/hotel-carousel-1.jpg",
-    "/hotel-website/hotel-carousel-2.jpg",
-    "/hotel-website/hotel-carousel-3.jpg",
+    "/hotel-website/Front-End/public/hotel-carousel-1.jpg",
+    "/hotel-website/Front-End/public/hotel-carousel-2.jpg",
+    "/hotel-website/Front-End/public/hotel-carousel-3.jpg",
   ];
   const [CurrentImage, setCurrentImage] = useState(0);
 
@@ -27,7 +27,7 @@ export default function HeroSection() {
       );
     }, 10000);
     return () => clearInterval(interval);
-  }, []);
+  });
 
   // Manually navigate to next image
   const handleNext = () => {

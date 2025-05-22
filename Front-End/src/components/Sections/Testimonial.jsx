@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 const OurClientSay = [
   {
     ClientId: 1,
-    clientImg: "/hotel-website/testimonial-1.jpg",
+    clientImg: "/hotel-website/Front-End/public/testimonial-1.jpg",
     clientName: "Laila",
     clientSaid:
       "The hospitality was beyond amazing! The room was cozy, the staff were kind, and everything was super clean. I can’t wait to come back!",
@@ -16,7 +16,7 @@ const OurClientSay = [
   },
   {
     ClientId: 2,
-    clientImg:  "/hotel-website/testimonial-2.jpg",
+    clientImg:  "/hotel-website/Front-End/public/testimonial-2.jpg",
     clientName: "Aziz Boujaada",
     clientSaid:
       "I loved how everything was organized! From the food to the service, it was all professional. Definitely recommending this place to my friends.",
@@ -24,7 +24,7 @@ const OurClientSay = [
   },
   {
     ClientId: 3,
-    clientImg: "/hotel-website/testimonial-3.jpg",
+    clientImg: "/hotel-website/Front-End/public/testimonial-3.jpg",
     clientName: "Youssef",
     clientSaid:
       "Perfect experience! The spa and fitness center helped me relax after a long week. Great vibe and great people.",
@@ -54,7 +54,7 @@ export default function TestImonial() {
     <AnimationXtoRight>
       <section
         className="mt-[6em] bg-cover bg-center py-16 px-4 h-auto sm:h-[55vh]"
-        style={{ backgroundImage: `url("/hotel-website/hotel-carousel-2.jpg")` }}
+        style={{ backgroundImage: `url("/hotel-website/Front-End/public/hotel-carousel-2.jpg")` }}
       >
         <AnimationY>
           <div className="bg-black bg-opacity-80 max-w-2xl h-[400px] lg:h-[320px] mx-auto rounded-xl p-8 text-white text-center shadow-lg relative">

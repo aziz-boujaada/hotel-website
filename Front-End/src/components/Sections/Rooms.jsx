@@ -2,8 +2,9 @@ import AnimationX from "../Animations/AnimationX";
 import AnimationY from "../Animations/AnimationY";
 import AnimationXtoRight from "../Animations/AnimationXtoRight";
 import FormModal from "../Forms/FormModal";
-import SuccessBooking from "../Alerts/SuccessBooking"
-import errors from "../Alerts/errors"
+import SuccessBooking from "../Alerts/SuccessBooking";
+
+
 import {
   faBed,
   faBath,
@@ -20,24 +21,24 @@ import ErrorsMessages from "../Alerts/errors";
 function SectionTitle() {
   return (
     <>
-    <AnimationY>
-      <div>
-        <h1 className="text-xl text-center font-semibold text-orange-400">
-          <span className="inline-block w-14 h-1 bg-orange-400 rounded  m-1"></span>{" "}
-          OUR ROOMS{" "}
-          <span className="inline-block w-14 h-1 bg-orange-400 rounded  m-1"></span>
-        </h1>
-        <h1 className="text-4xl text-center font-bold pt-4 ">
-          Explore Our <span className="text-orange-500">ROOMS</span>
-        </h1>
-      </div>
+      <AnimationY>
+        <div>
+          <h1 className="text-xl text-center font-semibold text-orange-400">
+            <span className="inline-block w-14 h-1 bg-orange-400 rounded  m-1"></span>{" "}
+            OUR ROOMS{" "}
+            <span className="inline-block w-14 h-1 bg-orange-400 rounded  m-1"></span>
+          </h1>
+          <h1 className="text-4xl text-center font-bold pt-4 ">
+            Explore Our <span className="text-orange-500">ROOMS</span>
+          </h1>
+        </div>
       </AnimationY>
     </>
   );
 }
 
 //Book Room button
-function BookRooMbtn({onClick}) {
+function BookRooMbtn({ onClick }) {
   return (
     <button
       onClick={onClick}
@@ -132,11 +133,11 @@ function AddToFavorite({ room }) {
 }
 //
 
-export default function PopularRooms() {
+export default function PopularRooms({setConfirmedBookings}) {
   const Rooms = [
     {
       id: 1,
-      img: "/hotel-website/room-1.jpg",
+      img: "/hotel-website/Front-End/public/room-1.jpg",
       type: "Junior Suite",
       price: 100,
       rating: 5,
@@ -147,7 +148,7 @@ export default function PopularRooms() {
     },
     {
       id: 2,
-      img: "/hotel-website/room-2.jpg",
+      img: "/hotel-website/Front-End/public/room-2.jpg",
       type: "Executive Suite",
       price: 100,
       rating: 4,
@@ -158,7 +159,7 @@ export default function PopularRooms() {
     },
     {
       id: 3,
-      img: "/hotel-website/room-3.jpg",
+      img: "/hotel-website/Front-End/public/room-3.jpg",
       type: "Super Deluxe",
       price: 100,
       rating: 4,
@@ -169,43 +170,42 @@ export default function PopularRooms() {
     },
   ];
 
-  const [modalOpen, setModalOpen] = useState(false);
-  const [BookingSuccess , setBookingSuccess] = useState(false);
-  const [requireFields , setRequireFields] = useState(false);
-  const [dateInput , setDateInput] = useState(false);
-   const [responseMSg , setResponseMsg] = useState("");
- 
+  const [FormModalOpen, setFormModalOpen] = useState(false);
+  const [BookingSuccess, setBookingSuccess] = useState(false);
+  const [requireFields, setRequireFields] = useState(false);
+  const [dateInput, setDateInput] = useState(false);
+  const [responseMSg, setResponseMsg] = useState("");
+  
 
-   useEffect(()=>{
-    const timeOut = setTimeout(()=>{
+  useEffect(() => {
+    const timeOut = setTimeout(() => {
       setBookingSuccess(false);
       setRequireFields(false);
       setDateInput(false);
       setResponseMsg("");
-    },6000)
-    return ()=>{
-      clearTimeout(timeOut)
-    }
-   },[BookingSuccess,requireFields,dateInput,responseMSg]);
+    }, 6000);
+    return () => {
+      clearTimeout(timeOut);
+    };
+  }, [BookingSuccess, requireFields, dateInput, responseMSg]);
 
   const handleOpenModal = () => {
-    setModalOpen(true);
+    setFormModalOpen(true);
   };
   const handleCloseModal = () => {
-    setModalOpen(false);
+    setFormModalOpen(false);
   };
+
   return (
     <>
-    {BookingSuccess && <SuccessBooking  isSuccess={BookingSuccess}/>}
-     {requireFields && (
-      <ErrorsMessages message = "Please fill in all required fields correctly!"/>
-     )}
-     {dateInput && (
-      <ErrorsMessages message = "Check-out date must be after check-in date!"/>
-     )}
-     {responseMSg && (
-      <ErrorsMessages message = {responseMSg}/>
-     )}
+      {BookingSuccess && <SuccessBooking isSuccess={BookingSuccess} />}
+      {requireFields && (
+        <ErrorsMessages message="Please fill in all required fields correctly!" />
+      )}
+      {dateInput && (
+        <ErrorsMessages message="Check-out date must be after check-in date!" />
+      )}
+      {responseMSg && <ErrorsMessages message={responseMSg} />}
       <section className=" relative mt-[12em] lg:mt[7em]">
         <SectionTitle />
 
@@ -231,7 +231,18 @@ export default function PopularRooms() {
               </div>
             ))}
           </div>
-          <FormModal isOpen={modalOpen} isClose={handleCloseModal} setBookingSuccess={setBookingSuccess} setRequireFields={setRequireFields} setDateCompare={setDateInput} setResponseMsg={setResponseMsg}  />
+          <FormModal
+            isOpen={FormModalOpen}
+            isClose={handleCloseModal}
+            setBookingSuccess={setBookingSuccess}
+            setRequireFields={setRequireFields}
+            setDateCompare={setDateInput}
+            setResponseMsg={setResponseMsg}
+            setConfirmedBookings={setConfirmedBookings}
+          />
+        
+          
+          
         </AnimationXtoRight>
       </section>
     </>
