@@ -7,6 +7,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
+import axios from "axios";
 function CloseButton({ onClick }) {
   return (
     <button
@@ -18,28 +19,52 @@ function CloseButton({ onClick }) {
     </button>
   );
 }
-export default function BookingState({ statusOpen, onClose, bookings = [] , children}) {
+export default function BookingState({ statusOpen, onClose, bookings , children}) {
   if (!statusOpen) return null;
-  
   const [LocalBookings , setLocalBookings ] = useState(
     bookings.map((booking)=> ({...booking , state:"Pending" , ShowAction : true}))
   )
-
-
+  
+  
   useEffect(()=>{
     const UpdateBookings = bookings.map((booking) =>({
       ...booking, state:"Pending" , ShowAction : true
     }))
     setLocalBookings(UpdateBookings)
+    console.log("booking" , UpdateBookings)
   } ,[bookings]);
   
 
 
-  const handleConfirm = (index) =>{
+  const handleConfirm = async (index) =>{
      const Update = [...LocalBookings];
      Update[index].state = "Confirmed";
      Update[index].ShowAction = false;
-     setLocalBookings(Update)
+     setLocalBookings(Update);
+
+     const updatedBooking = {
+    email: Update[index].email,
+    state: Update[index].state,
+  };
+
+      try {
+      const response = await axios.put(
+        "http://localhost/hotel-website/Back-End/book_room.php",
+        JSON.stringify(updatedBooking),
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const result = response.data;
+      if(result.success){
+        console.log(result)
+      }
+    }catch(error) {
+      console.error("error form submission", error);
+      alert("failed connection to the server");
+    }
   
   }
 

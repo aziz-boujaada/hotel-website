@@ -29,6 +29,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             $numberOfAdult += $row['adult'];
             $numberOfChildren += $row['children'];
             $successReservation = $numberOfClient;
+            $book_state = $row['status'];
 
         }
     
@@ -37,7 +38,8 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             "adultNumber"=> $numberOfAdult,
             "childrenNumber"=> $numberOfChildren,
             "successReservation"=> $successReservation,
-             "deletedReservation"=> $deletedReservation
+             "deletedReservation"=> $deletedReservation,
+             "book_state"=> $book_state,
         ]);
       }
 

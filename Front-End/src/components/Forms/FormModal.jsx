@@ -1,7 +1,8 @@
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
+import ReservationStatu from "../dashboard/ReservationStatu";
 
 function CloseButton({ onClick }) {
   return (
@@ -23,9 +24,10 @@ export default function FormModal({
   setRequireFields,
   setDateCompare,
   setResponseMsg,
-  setConfirmedBookings
+  setConfirmedBookings,
+  
 }) {
-  console.log("setConfirmedBookings in FormModal:", setConfirmedBookings);
+ 
   const [Form, setForm] = useState({
     username: "",
     email: "",
@@ -34,16 +36,15 @@ export default function FormModal({
     adult: "",
     children: "",
     room_type: "",
-    state: "pending"
+   
   });
+  
   if (!isOpen) return null;
 
 
 
-
-    
-    const handleChange = (e) => {
-    setForm({ ...Form, [e.target.name]: e.target.value });
+  const handleChange = (e) => {
+    setForm({ ...Form, [e.target.name]: e.target.value  });
   };
 
   const handleSubmit = async (e) => {
@@ -60,32 +61,32 @@ export default function FormModal({
       setRequireFields(true);
       return;
     }
-
+    
+    console.log(" Form Data:", Form);
     if (new Date(Form.check_in) > new Date(Form.check_out)) {
       setDateCompare(true);
       return;
     }
-    
-    
     
     try {
       const response = await axios.post(
         "http://localhost/hotel-website/Back-End/book_room.php",
         Form,
         {
-        
           headers: {
             "Content-Type": "application/json",
           },
         }
       );
-      
-      const result =  response.data;
+
+      const result = response.data;
       console.log(result);
       if (result.success) {
         setBookingSuccess(true);
         setResponseMsg(result.message);
-        setConfirmedBookings((prev) => [...prev , Form]);
+        
+         setConfirmedBookings((prev) => [...prev, Form]);
+      
         isClose();
       } else {
         setBookingSuccess(false);
@@ -216,12 +217,15 @@ export default function FormModal({
                 <option value="double"> double</option>
               </select>
             </div>
-            <button type="submit" className="bg-orange-500 text-white p-2 mt-5 w-[75%] hover:bg-orange-400 transition duration-300">
+            <button
+              type="submit"
+              className="bg-orange-500 text-white p-2 mt-5 w-[75%] hover:bg-orange-400 transition duration-300"
+            >
               BOOK NOW
             </button>
           </form>
           {children}
-       
+          
         </div>
       )}
     </>

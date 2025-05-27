@@ -125,7 +125,7 @@ function AddToFavorite({ room }) {
     <FontAwesomeIcon
       icon={faHeart}
       className={`h-6 mt-6 p-1 cursor-pointer rounded transition-colors duration-300 ${
-        liked ? "text-red-600 bg-orange-100" : "text-white bg-orange-500"
+        liked ? "text-red-600FF bg-orange-100" : "text-white bg-orange-500"
       }`}
       onClick={() => setLiked(!liked)}
     />

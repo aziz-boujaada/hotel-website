@@ -61,7 +61,7 @@ function Sidebar({ activeTab, setActiveTab }) {
 }
 
 //client statistics
-function DisplayClientStatistics({ setClientStatistic }) {
+function DisplayClientStatistics({ setClientStatistic , status }) {
   return (
     <>
       <div>
@@ -117,6 +117,15 @@ function DisplayClientStatistics({ setClientStatistic }) {
               {setClientStatistic.deletedReservation}
             </h2>
           </div>
+          <div className="bg-red-400 text-center p-8 w-full rounded-xl">
+            
+            <h1 className="font-bold text-2xl text-white">
+              status
+            </h1>
+            <h2 className="text-2xl text-white">
+              {status}
+            </h2>
+          </div>
         </div>
       </div>
     </>
@@ -130,6 +139,7 @@ export default function AdminDashboard() {
     childrenNumber: 0,
     successReservation: 0,
     deletedReservation: 0,
+    book_state : "",
   });
 
   const [CounterEffect, setCounterEffect] = useState({
@@ -162,7 +172,8 @@ export default function AdminDashboard() {
           childrenNumber: result.childrenNumber,
           adultNumber: result.adultNumber,
           successReservation: result.successReservation,
-          deletedReservation: result.deletedReservation,
+          deletedReservation: result.deletedReservation, 
+          book_state:result.book_state,
         });
       } catch (error) {
         console.error("error fetching data", error);
@@ -198,7 +209,7 @@ export default function AdminDashboard() {
           <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
           <div ref={ref}>
             {activeTab == "Dashboard" && (
-              <DisplayClientStatistics setClientStatistic={CounterEffect} />
+              <DisplayClientStatistics setClientStatistic={CounterEffect}  />
             )}
           </div>
         </div>

@@ -30,6 +30,7 @@ export default function App() {
           bookings={confirmedBookings}
           statusOpen={statusOpen}
           onClose={handleCloseStatus}
+          setConfirmedBookings={setConfirmedBookings}
         />
         <Routes>
           <Route

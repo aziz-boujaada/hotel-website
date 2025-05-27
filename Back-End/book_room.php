@@ -7,7 +7,7 @@ header("Access-Control-Allow-Methods: GET , POST , PUT , DELETE");
 header("Access-Control-Allow-Headers: Content-Type");
 header('Content-Type: application/json');
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' ) {
 
 
     require_once "config.php";
@@ -23,8 +23,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $adult = (int)$data['adult'];
     $children = isset($data['children']) ? (int)$data['children'] : 0;
     $room_type =$data['room_type'];
-    $book_state = $conn->real_escape_string($data['state']);
+    $book_state = "Pending";
 
+
+    echo json_encode(["state" => $book_state]);
 
     if(!preg_match("/^[a-zA-Z ]+$/" ,$username)){
         echo json_encode(["success" => false ,"message" => "username must be contain letter only (no numbers or symbols)" ]);
@@ -62,14 +64,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ssssiiss", $username, $email,$check_in_formatted, $check_out_formatted , $adult, $children , $room_type , $book_state);
     if ($stmt->execute()){
-        $conn->close();
+     
         echo json_encode(["success" => true, "message" => ""]);
-        exit;
+        $conn->close();
     }else {
         $conn->close();
         echo json_encode(["success" => false, "message" => "reservation failed"]);
         exit;
     }
+    exit;
 } else {
     echo json_encode([ "success"=>false ,"message" => "Invalid Request method (get)"]);
     exit;
