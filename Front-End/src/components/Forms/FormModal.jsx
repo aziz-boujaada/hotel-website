@@ -36,7 +36,7 @@ export default function FormModal({
     adult: "",
     children: "",
     room_type: "",
-   
+    state : "Pending"
   });
   
   if (!isOpen) return null;
@@ -228,6 +228,7 @@ export default function FormModal({
           
         </div>
       )}
+      <ReservationStatu isClose={isClose} isOpen={isOpen}/>
     </>
   );
 }

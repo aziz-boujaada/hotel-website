@@ -11,6 +11,7 @@ import {
   faChild,
   faCheckCircle,
   faTrashAlt,
+  faClock
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
@@ -75,8 +76,8 @@ function DisplayClientStatistics({ setClientStatistic , status }) {
             <FontAwesomeIcon icon={faUsers} className="text-2xl text-white" />
             <h1 className="font-bold text-2xl text-white">Client</h1>
             <h2 className="text-2xl text-white">
-              {" "}
-              {setClientStatistic.clientNumber}{" "}
+             
+              {setClientStatistic.clientNumber}
             </h2>
           </div>
           <div className="bg-yellow-400 text-center p-8 w-full rounded-xl">
@@ -88,7 +89,7 @@ function DisplayClientStatistics({ setClientStatistic , status }) {
           </div>
           <div className="bg-blue-400 text-center p-8 w-full rounded-xl">
             <FontAwesomeIcon icon={faChild} className="text-2xl text-white" />
-            <h1 className="font-bold text-2xl text-white"> children </h1>
+            <h1 className="font-bold text-2xl text-white"> Children </h1>
             <h2 className="text-2xl text-white">
               {setClientStatistic.childrenNumber}
             </h2>
@@ -99,7 +100,7 @@ function DisplayClientStatistics({ setClientStatistic , status }) {
               className="text-2xl text-white"
             />
             <h1 className="font-bold text-2xl text-white">
-              success Reservation
+              Success Reservation
             </h1>
             <h2 className="text-2xl text-white">
               {setClientStatistic.successReservation}
@@ -111,21 +112,26 @@ function DisplayClientStatistics({ setClientStatistic , status }) {
               className="text-2xl text-white"
             />
             <h1 className="font-bold text-2xl text-white">
-              deleted Reservation
+              Deleted Reservation
             </h1>
             <h2 className="text-2xl text-white">
               {setClientStatistic.deletedReservation}
             </h2>
           </div>
-          <div className="bg-red-400 text-center p-8 w-full rounded-xl">
-            
+
+          <div className="bg-pink-800 text-center p-8 w-full rounded-xl">
+            <FontAwesomeIcon
+              icon={faClock}
+              className="text-2xl text-white"
+            />
             <h1 className="font-bold text-2xl text-white">
-              status
+              Pending Reservation
             </h1>
             <h2 className="text-2xl text-white">
-              {status}
+              {setClientStatistic.pendingReservation}
             </h2>
           </div>
+          
         </div>
       </div>
     </>
@@ -139,7 +145,7 @@ export default function AdminDashboard() {
     childrenNumber: 0,
     successReservation: 0,
     deletedReservation: 0,
-    book_state : "",
+    pendingReservation: 0
   });
 
   const [CounterEffect, setCounterEffect] = useState({
@@ -148,6 +154,7 @@ export default function AdminDashboard() {
     childrenNumber: 0,
     successReservation: 0,
     deletedReservation: 0,
+    pendingReservation: 0
   });
 
   const { ref, inView } = useInView({ triggerOnce: false, threshold: 0.5 });
@@ -173,7 +180,7 @@ export default function AdminDashboard() {
           adultNumber: result.adultNumber,
           successReservation: result.successReservation,
           deletedReservation: result.deletedReservation, 
-          book_state:result.book_state,
+          pendingReservation: result.pendingReservation,
         });
       } catch (error) {
         console.error("error fetching data", error);

@@ -23,10 +23,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ) {
     $adult = (int)$data['adult'];
     $children = isset($data['children']) ? (int)$data['children'] : 0;
     $room_type =$data['room_type'];
-    $book_state = "Pending";
+    $book_state = $data['state'];
 
 
-    echo json_encode(["state" => $book_state]);
+  
 
     if(!preg_match("/^[a-zA-Z ]+$/" ,$username)){
         echo json_encode(["success" => false ,"message" => "username must be contain letter only (no numbers or symbols)" ]);

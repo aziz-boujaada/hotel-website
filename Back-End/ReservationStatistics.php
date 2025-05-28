@@ -22,16 +22,27 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
         $numberOfChildren = 0;
         $successReservation = 0;
         $deletedReservation = 0 ;
+        $pendingReservation = 0;
+        
+        if($statistics->num_rows > 0){
     
-      if($statistics->num_rows > 0){
-        while($row = $statistics->fetch_assoc()){
-            $numberOfClient++;
-            $numberOfAdult += $row['adult'];
-            $numberOfChildren += $row['children'];
-            $successReservation = $numberOfClient;
-            $book_state = $row['status'];
+            while($row = $statistics->fetch_assoc()){
+                $numberOfClient++;
+                $numberOfAdult += $row['adult'];
+                $numberOfChildren += $row['children'];
+
+                if($row['status'] == "Confirmed"){
+                    $successReservation++;
+                }
+                if($row['status'] == "Deleted"){
+                    $deletedReservation++;
+                }
+                if(strtolower($row['status']) == "pending"){
+                    $pendingReservation++;
+                }
 
         }
+
     
         echo json_encode([
             "clientNumber"=> $numberOfClient,
@@ -39,7 +50,8 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             "childrenNumber"=> $numberOfChildren,
             "successReservation"=> $successReservation,
              "deletedReservation"=> $deletedReservation,
-             "book_state"=> $book_state,
+             "pendingReservation"=>$pendingReservation,
+          
         ]);
       }
 

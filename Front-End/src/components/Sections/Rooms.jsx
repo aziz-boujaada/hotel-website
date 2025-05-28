@@ -3,6 +3,7 @@ import AnimationY from "../Animations/AnimationY";
 import AnimationXtoRight from "../Animations/AnimationXtoRight";
 import FormModal from "../Forms/FormModal";
 import SuccessBooking from "../Alerts/SuccessBooking";
+import BookingState from "../dashboard/ReservationStatu";
 
 
 import {
@@ -125,7 +126,7 @@ function AddToFavorite({ room }) {
     <FontAwesomeIcon
       icon={faHeart}
       className={`h-6 mt-6 p-1 cursor-pointer rounded transition-colors duration-300 ${
-        liked ? "text-red-600FF bg-orange-100" : "text-white bg-orange-500"
+        liked ? "text-red-600 bg-orange-100" : "text-white bg-orange-500"
       }`}
       onClick={() => setLiked(!liked)}
     />
@@ -240,8 +241,8 @@ export default function PopularRooms({setConfirmedBookings}) {
             setResponseMsg={setResponseMsg}
             setConfirmedBookings={setConfirmedBookings}
           />
-        
           
+          <BookingState FormOpen={FormModalOpen} isOpen={handleOpenModal} isClose={handleCloseModal}/>
           
         </AnimationXtoRight>
       </section>

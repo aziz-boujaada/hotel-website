@@ -8,6 +8,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import FormModal from "../Forms/FormModal";
 function CloseButton({ onClick }) {
   return (
     <button
@@ -19,7 +20,7 @@ function CloseButton({ onClick }) {
     </button>
   );
 }
-export default function BookingState({ statusOpen, onClose, bookings , children}) {
+export default function BookingState({ statusOpen, onClose, bookings ,isOpen ,FormOpen ,isClose,  children}) {
   if (!statusOpen) return null;
   const [LocalBookings , setLocalBookings ] = useState(
     bookings.map((booking)=> ({...booking , state:"Pending" , ShowAction : true}))
@@ -49,7 +50,7 @@ export default function BookingState({ statusOpen, onClose, bookings , children}
 
       try {
       const response = await axios.put(
-        "http://localhost/hotel-website/Back-End/book_room.php",
+        "http://localhost/hotel-website/Back-End/reservations.php",
         JSON.stringify(updatedBooking),
         {
           headers: {
@@ -62,22 +63,56 @@ export default function BookingState({ statusOpen, onClose, bookings , children}
         console.log(result)
       }
     }catch(error) {
-      console.error("error form submission", error);
+      console.error("error Updating", error);
       alert("failed connection to the server");
     }
   
   }
 
-  const handleDelete = (index) =>{
+  const handleDelete = async (index) =>{
     const Update = [...LocalBookings];
     Update[index].state = "Deleted";
     Update[index].ShowAction = false;
     setLocalBookings(Update);
+    const updatedBooking = {
+      email : Update[index].email,
+      state : Update[index].state,
+    };
+
+    try{
+      const response = await axios.put(
+         "http://localhost/hotel-website/Back-End/reservations.php",
+         JSON.stringify(updatedBooking),
+         {
+          headers :{
+                 "Content-Type" : "Application.json",
+          },
+         }
+      );
+      const result = response.data;
+      if(result.success){
+        console.log(result)
+      }
+    }catch (err){
+           console.error("error updating" , err);
+           alert("failed connection to the server");
+    }
    
   }
 
+  //Modify reservation
+  const handleModify = (index) =>{
+      
+     isOpen();
+ 
+  }
 
+  
   return (
+    <>
+    {FormOpen && (
+      <FormModal/>
+    )}
     <div className="bg-slate-700 fixed inset-0 lg:inset-20 z-40 mx-0 lg:mx-4 overflow-auto p-4 lg:p-12">
       <CloseButton onClick={onClose} />
       <table className="w-full text-white text-center">
@@ -128,7 +163,9 @@ export default function BookingState({ statusOpen, onClose, bookings , children}
                         Confirm
                       </span>
                     </li>
-                    <li className="cursor-pointer text-yellow-500 relative group transition-transform hover:scale-110">
+                    <li 
+                    onClick={ ()=> handleModify(index)}
+                    className="cursor-pointer text-yellow-500 relative group transition-transform hover:scale-110">
                       <FontAwesomeIcon icon={faPen} />
                       <span className="absolute bottom-6 left-1/2 transform -translate-x-1/2 w-[100px] text-center bg-gray-900 text-white text-sm p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         Modify
@@ -160,5 +197,7 @@ export default function BookingState({ statusOpen, onClose, bookings , children}
 
       {children}
     </div>
+   
+    </>
   );
 }
