@@ -8,13 +8,18 @@ import Staff from "../Sections/Staff";
 import Footer from "../Sections/Footer";
 import CallToActionForm from "../Forms/CallToActionForm";
 
- export default function HomePage({setConfirmedBookings}){
+ export default function HomePage({setConfirmedBookings ,  isFormModalOpen ,openModalToNewBooking , onCloseFormModal}){
     return(
         <>
         <HeroSection />
         <CallToActionForm />
         <AboutSection/>
-        <Rooms setConfirmedBookings={setConfirmedBookings}/>
+        <Rooms
+         setConfirmedBookings={setConfirmedBookings}
+         isFormModalOpen={isFormModalOpen}
+         openModalToNewBooking={openModalToNewBooking}
+         onCloseFormModal={onCloseFormModal}
+         />
         <Services/>
         <TestImonial />
         <Staff />

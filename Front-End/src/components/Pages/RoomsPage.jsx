@@ -6,12 +6,18 @@ import Footer from "../Sections/Footer"
 import AdminDashboard from "../dashboard/AdminDashboard";
 import ReservationStatu from "../dashboard/ReservationStatu"
 
-export default function RoomsPage({setConfirmedBookings}){
+export default function RoomsPage({setConfirmedBookings , bookings , openModalToNewBooking , isFormModalOpen ,  onCloseFormModal}){
     return(
         <>
           <HeroSection/>
           <CallToActionForm/>
-          <PopularRooms setConfirmedBookings = {setConfirmedBookings}/>
+          <PopularRooms
+           setConfirmedBookings = {setConfirmedBookings}
+            bookings={bookings}
+            isFormModalOpen={isFormModalOpen}
+            openModalToNewBooking={openModalToNewBooking}
+             onCloseFormModal={onCloseFormModal}
+            />
           <TestImonial/>
           <Footer/>
           <AdminDashboard />

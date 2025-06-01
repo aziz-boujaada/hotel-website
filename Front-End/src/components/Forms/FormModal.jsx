@@ -2,7 +2,6 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import ReservationStatu from "../dashboard/ReservationStatu";
 
 function CloseButton({ onClick }) {
   return (
@@ -18,16 +17,15 @@ function CloseButton({ onClick }) {
 
 export default function FormModal({
   children,
-  isClose,
-  isOpen,
+  onCloseFormModal,
+  isFormModalOpen,
   setBookingSuccess,
   setRequireFields,
   setDateCompare,
   setResponseMsg,
   setConfirmedBookings,
-  
+  bookingToModify,
 }) {
- 
   const [Form, setForm] = useState({
     username: "",
     email: "",
@@ -36,15 +34,37 @@ export default function FormModal({
     adult: "",
     children: "",
     room_type: "",
-    state : "Pending"
+    state: "Pending",
   });
-  
-  if (!isOpen) return null;
 
-
+  useEffect(() => {
+    if (bookingToModify) {
+      setForm({
+        username: bookingToModify.username || "",
+        email: bookingToModify.email || "",
+        check_in: bookingToModify.check_in || "",
+        check_out: bookingToModify.check_out || "",
+        adult: bookingToModify.adult || "",
+        children: bookingToModify.children || "",
+        room_type: bookingToModify.room_type || "",
+        state: bookingToModify.state || "Pending",
+      });
+    } else {
+      setForm({
+        username: "",
+        email: "",
+        check_in: "",
+        check_out: "",
+        adult: "",
+        children: "",
+        room_type: "",
+        state: "Pending",
+      });
+    }
+  }, [bookingToModify]);
 
   const handleChange = (e) => {
-    setForm({ ...Form, [e.target.name]: e.target.value  });
+    setForm({ ...Form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
@@ -61,51 +81,65 @@ export default function FormModal({
       setRequireFields(true);
       return;
     }
-    
+
     console.log(" Form Data:", Form);
     if (new Date(Form.check_in) > new Date(Form.check_out)) {
       setDateCompare(true);
       return;
     }
-    
-    try {
-      const response = await axios.post(
-        "http://localhost/hotel-website/Back-End/book_room.php",
-        Form,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
 
-      const result = response.data;
-      console.log(result);
-      if (result.success) {
-        setBookingSuccess(true);
-        setResponseMsg(result.message);
-        
-         setConfirmedBookings((prev) => [...prev, Form]);
-      
-        isClose();
+    try {
+      let response;
+      if (bookingToModify) {
+        response = await axios.put(
+          "http://localhost/hotel-website/Back-End/book_room.php",
+          { ...Form, email: bookingToModify.email },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
       } else {
-        setBookingSuccess(false);
-        setResponseMsg(result.message);
+        response = await axios.post(
+          "http://localhost/hotel-website/Back-End/book_room.php",
+          Form,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const result = response.data;
+        console.log(result);
+        if (result.success) {
+          setBookingSuccess(true);
+          setResponseMsg(result.message);
+          if (!bookingToModify) {
+            setConfirmedBookings((prev) => [...prev, Form]);
+          }
+
+          onCloseFormModal();
+        } else {
+          setBookingSuccess(false);
+          setResponseMsg(result.message);
+        }
       }
     } catch (error) {
       console.error("error form submission", error);
       alert("failed connection to the server");
     }
   };
+  if (!isFormModalOpen) return null;
   return (
     <>
-      {isOpen && (
-        <div className="fixed inset-0  bg-black bg-opacity-40 z-40 flex justify-center items-center mx-4 ">
+      {isFormModalOpen && (
+        <div className="fixed inset-0  bg-black bg-opacity-40 z-50 flex justify-center items-center mx-4 ">
           <form
             onSubmit={handleSubmit}
             className="absolute bg-white flex flex-col  items-center gap-3  lg:gap-9 p-2 mt-12  w-full lg:w-1/2 shadow-xl  rounded-lg"
           >
-            <CloseButton onClick={isClose} />
+            <CloseButton onClick={onCloseFormModal} />
 
             {/* Name and Email */}
             <div className=" grid grid-cols-1 lg:flex items-center gap-3 lg:gap-6  pt-1 lg:pt-4">
@@ -113,6 +147,7 @@ export default function FormModal({
                 <label htmlFor="name">Your Name</label>
                 <br />
                 <input
+                  value={Form.username}
                   onChange={handleChange}
                   id="name"
                   name="username"
@@ -127,6 +162,7 @@ export default function FormModal({
                 <label htmlFor="email">Your Email</label>
                 <br />
                 <input
+                  value={Form.email}
                   onChange={handleChange}
                   id="email"
                   name="email"
@@ -145,6 +181,7 @@ export default function FormModal({
                 <label htmlFor="checkin">Check-in Date</label>
                 <br />
                 <input
+                  value={Form.check_in}
                   onChange={handleChange}
                   id="checkin"
                   name="check_in"
@@ -157,6 +194,7 @@ export default function FormModal({
                 <label htmlFor="checkout">Check-out Date</label>
                 <br />
                 <input
+                  value={Form.check_out}
                   onChange={handleChange}
                   id="checkout"
                   name="check_out"
@@ -173,6 +211,7 @@ export default function FormModal({
                 <label htmlFor="adults">Adults</label>
                 <br />
                 <select
+                  value={Form.adult}
                   onChange={handleChange}
                   id="adults"
                   name="adult"
@@ -189,6 +228,7 @@ export default function FormModal({
                 <label htmlFor="children">Children</label>
                 <br />
                 <select
+                  value={Form.children}
                   onChange={handleChange}
                   id="children"
                   name="children"
@@ -206,6 +246,7 @@ export default function FormModal({
               <label htmlFor="room_type">Room Type</label>
               <br />
               <select
+                value={Form.room_type}
                 onChange={handleChange}
                 id="roomType"
                 name="room_type"
@@ -221,14 +262,12 @@ export default function FormModal({
               type="submit"
               className="bg-orange-500 text-white p-2 mt-5 w-[75%] hover:bg-orange-400 transition duration-300"
             >
-              BOOK NOW
+              {bookingToModify ? "Update Your Booking" : "BOOK NOW"}
             </button>
           </form>
           {children}
-          
         </div>
       )}
-      <ReservationStatu isClose={isClose} isOpen={isOpen}/>
     </>
   );
 }

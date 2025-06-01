@@ -39,10 +39,10 @@ function SectionTitle() {
 }
 
 //Book Room button
-function BookRooMbtn({ onClick }) {
+function BookRooMbtn({ onOpenModal }) {
   return (
     <button
-      onClick={onClick}
+      onClick={onOpenModal}
       className="w-full h-10 bg-orange-500 rounded mt-6 text-white font-semibold border border-transparent hover:text-orange-500 hover:bg-white hover:border-orange-500 transition-all duration-300"
     >
       BOOK ROOM
@@ -134,7 +134,7 @@ function AddToFavorite({ room }) {
 }
 //
 
-export default function PopularRooms({setConfirmedBookings}) {
+export default function PopularRooms({setConfirmedBookings , bookings , isFormModalOpen ,openModalToNewBooking,  onCloseFormModal}) {
   const Rooms = [
     {
       id: 1,
@@ -171,7 +171,7 @@ export default function PopularRooms({setConfirmedBookings}) {
     },
   ];
 
-  const [FormModalOpen, setFormModalOpen] = useState(false);
+ 
   const [BookingSuccess, setBookingSuccess] = useState(false);
   const [requireFields, setRequireFields] = useState(false);
   const [dateInput, setDateInput] = useState(false);
@@ -190,12 +190,7 @@ export default function PopularRooms({setConfirmedBookings}) {
     };
   }, [BookingSuccess, requireFields, dateInput, responseMSg]);
 
-  const handleOpenModal = () => {
-    setFormModalOpen(true);
-  };
-  const handleCloseModal = () => {
-    setFormModalOpen(false);
-  };
+ 
 
   return (
     <>
@@ -207,7 +202,7 @@ export default function PopularRooms({setConfirmedBookings}) {
         <ErrorsMessages message="Check-out date must be after check-in date!" />
       )}
       {responseMSg && <ErrorsMessages message={responseMSg} />}
-      <section className=" relative mt-[12em] lg:mt[7em]">
+      <section className=" relative mt-[12em] lg:mt-[7em]">
         <SectionTitle />
 
         {/* ROOMS CARDS*/}
@@ -225,7 +220,7 @@ export default function PopularRooms({setConfirmedBookings}) {
                   <RoomsServices room={room} />
                   <h2 className="pt-4 text-gray-700">{room.description}</h2>
                   <div className="flex items-center gap-4">
-                    <BookRooMbtn onClick={handleOpenModal} />
+                    <BookRooMbtn onOpenModal={openModalToNewBooking} />
                     <AddToFavorite room={room} />
                   </div>
                 </div>
@@ -233,17 +228,18 @@ export default function PopularRooms({setConfirmedBookings}) {
             ))}
           </div>
           <FormModal
-            isOpen={FormModalOpen}
-            isClose={handleCloseModal}
+            isFormModalOpen={isFormModalOpen}
+             onCloseFormModal={onCloseFormModal}
             setBookingSuccess={setBookingSuccess}
             setRequireFields={setRequireFields}
             setDateCompare={setDateInput}
             setResponseMsg={setResponseMsg}
             setConfirmedBookings={setConfirmedBookings}
+           
           />
           
-          <BookingState FormOpen={FormModalOpen} isOpen={handleOpenModal} isClose={handleCloseModal}/>
           
+         
         </AnimationXtoRight>
       </section>
     </>

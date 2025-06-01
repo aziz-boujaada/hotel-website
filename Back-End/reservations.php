@@ -26,7 +26,7 @@ $stmt = $conn->prepare("UPDATE book_room SET status = ? WHERE email = ?");
 $stmt->bind_param("ss", $new_status, $email);
 
 if ($stmt->execute()) {
-    echo json_encode(["success" => true, "message" => "Status updated successfully"]);
+    echo json_encode(["success" => true, "message" => "Status updated successfully" ,"status"=> $new_status]);
 } else {
     echo json_encode(["success" => false, "message" => "Failed to update status"]);
 }
