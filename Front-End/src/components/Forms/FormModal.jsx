@@ -24,7 +24,8 @@ export default function FormModal({
   setDateCompare,
   setResponseMsg,
   setConfirmedBookings,
-  bookingToModify,
+  selectToModify,
+
 }) {
   const [Form, setForm] = useState({
     username: "",
@@ -38,16 +39,17 @@ export default function FormModal({
   });
 
   useEffect(() => {
-    if (bookingToModify) {
+    if (selectToModify) {
       setForm({
-        username: bookingToModify.username || "",
-        email: bookingToModify.email || "",
-        check_in: bookingToModify.check_in || "",
-        check_out: bookingToModify.check_out || "",
-        adult: bookingToModify.adult || "",
-        children: bookingToModify.children || "",
-        room_type: bookingToModify.room_type || "",
-        state: bookingToModify.state || "Pending",
+        id: selectToModify.id ?? "",
+        username: selectToModify.username ?? "",
+        email: selectToModify.email ?? "",
+        check_in: selectToModify.check_in ?? "",
+        check_out: selectToModify.check_out ?? "",
+        adult: selectToModify.adult ?? "",
+        children: selectToModify.children ?? "",
+        room_type: selectToModify.room_type ?? "",
+        state: selectToModify.state ?? "Pending",
       });
     } else {
       setForm({
@@ -61,7 +63,8 @@ export default function FormModal({
         state: "Pending",
       });
     }
-  }, [bookingToModify]);
+  }, [selectToModify]);
+console.log("FormModal.jsx selectToModify", selectToModify);
 
   const handleChange = (e) => {
     setForm({ ...Form, [e.target.name]: e.target.value });
@@ -88,18 +91,33 @@ export default function FormModal({
       return;
     }
 
+    
     try {
       let response;
-      if (bookingToModify) {
+      if (selectToModify) {
         response = await axios.put(
-          "http://localhost/hotel-website/Back-End/book_room.php",
-          { ...Form, email: bookingToModify.email },
+          "http://localhost/hotel-website/Back-End/UpdateReservation.php",
+          { ...Form, id : selectToModify.id},
           {
             headers: {
               "Content-Type": "application/json",
             },
           }
         );
+         const result = response.data;
+        console.log(result);
+        if (result.success) {
+          setBookingSuccess(true);
+          setResponseMsg(result.message);
+          if (!selectToModify) {
+            setConfirmedBookings((prev) => [...prev, Form]);
+          }
+
+          onCloseFormModal();
+        } else {
+          setBookingSuccess(false);
+          setResponseMsg(result.message);
+        }
       } else {
         response = await axios.post(
           "http://localhost/hotel-website/Back-End/book_room.php",
@@ -115,7 +133,7 @@ export default function FormModal({
         if (result.success) {
           setBookingSuccess(true);
           setResponseMsg(result.message);
-          if (!bookingToModify) {
+          if (!selectToModify) {
             setConfirmedBookings((prev) => [...prev, Form]);
           }
 
@@ -262,7 +280,7 @@ export default function FormModal({
               type="submit"
               className="bg-orange-500 text-white p-2 mt-5 w-[75%] hover:bg-orange-400 transition duration-300"
             >
-              {bookingToModify ? "Update Your Booking" : "BOOK NOW"}
+              {selectToModify ? "Update Your Booking" : "BOOK NOW"}
             </button>
           </form>
           {children}

@@ -9,6 +9,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+import FormModal from "../Forms/FormModal";
+
 function CloseButton({ onClick }) {
   return (
     <button
@@ -26,6 +28,7 @@ export default function BookingState({
   bookings,
  onOpenToModify,
   setSelectToModify,
+   selectToModify,
   children,
 }) {
   if (!statusOpen) return null;
@@ -37,12 +40,26 @@ export default function BookingState({
     }))
   );
 
+ 
   useEffect(() => {
-    const UpdateBookings = bookings.map((booking) => ({
-      ...booking,
-      state: "Pending",
-      ShowAction: true,
-    }));
+    const UpdateBookings = bookings.map((booking) => {
+      const storedState = localStorage.getItem(`saveState ${booking.email}`)
+      if(storedState){
+        const parsed = JSON.parse(storedState)
+        return{
+
+          ...booking,
+          state: parsed.state || "pending",
+           ShowAction: parsed.state == "pending"
+        }
+      }
+      return{
+
+       ...booking ,
+       state: "pending",
+       ShowAction:true
+      }
+  });
     setLocalBookings(UpdateBookings);
     console.log("booking", UpdateBookings);
   }, [bookings]);
@@ -57,7 +74,9 @@ export default function BookingState({
       email: Update[index].email,
       state: Update[index].state,
     };
-
+   
+    localStorage.setItem(`saveState ${Update[index].email}` ,
+        JSON.stringify({state  : Update[index].state , ShowAction: Update[index].ShowAction }))
     try {
       const response = await axios.put(
         "http://localhost/hotel-website/Back-End/reservations.php",
@@ -73,11 +92,10 @@ export default function BookingState({
         console.log(result);
       }
     } catch (error) {
-      console.error("error Updating", error);
+      console.error("error confirmed", error);
       alert("failed connection to the server");
     }
   };
-
   const handleDelete = async (index) => {
     const Update = [...LocalBookings];
     Update[index].state = "Deleted";
@@ -87,7 +105,11 @@ export default function BookingState({
       email: Update[index].email,
       state: Update[index].state,
     };
-
+    
+    
+        localStorage.setItem(`saveState ${Update[index].email}` ,
+        JSON.stringify({state  : Update[index].state , ShowAction: Update[index].ShowAction }))
+      
     try {
       const response = await axios.put(
         "http://localhost/hotel-website/Back-End/reservations.php",
@@ -103,7 +125,7 @@ export default function BookingState({
         console.log(result);
       }
     } catch (err) {
-      console.error("error updating", err);
+      console.error("error DELETED", err);
       alert("failed connection to the server");
     }
   };
@@ -115,9 +137,9 @@ export default function BookingState({
   const handleModify = (index) => {
     const selectedBooking = LocalBookings[index];
     setSelectToModify(selectedBooking);
-    onOpenToModify();
+    onOpenToModify(selectedBooking);
     console.log("setFormModal is" ,onOpenToModify)
-    console.log("select To modify", setSelectToModify)
+    console.log("select To modify", selectToModify)
   };
 
   return (
@@ -127,6 +149,8 @@ export default function BookingState({
         <table className="w-full text-white text-center">
           <thead className="bg-slate-800">
             <tr>
+
+              <th className="p-3">ID</th>
               <th className="p-3">Name</th>
               <th className="p-3">Email</th>
               <th className="p-3">Room Type</th>
@@ -140,6 +164,7 @@ export default function BookingState({
             {LocalBookings && LocalBookings.length > 0 ? (
               LocalBookings.map((booking, index) => (
                 <tr key={index} className="border-b border-slate-600">
+                  <td className="p-6">{booking.id}</td>
                   <td className="p-6">{booking.username}</td>
                   <td className="p-6">{booking.email}</td>
                   <td className="p-6">{booking.room_type}</td>
@@ -216,6 +241,7 @@ export default function BookingState({
 
         {children}
       </div>
+     
     </>
   );
 }

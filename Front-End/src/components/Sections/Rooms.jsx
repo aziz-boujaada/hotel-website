@@ -134,7 +134,7 @@ function AddToFavorite({ room }) {
 }
 //
 
-export default function PopularRooms({setConfirmedBookings , bookings , isFormModalOpen ,openModalToNewBooking,  onCloseFormModal}) {
+export default function PopularRooms({setConfirmedBookings , bookings , isFormModalOpen ,openModalToNewBooking,  onCloseFormModal , selectToModify}) {
   const Rooms = [
     {
       id: 1,
@@ -191,7 +191,7 @@ export default function PopularRooms({setConfirmedBookings , bookings , isFormMo
   }, [BookingSuccess, requireFields, dateInput, responseMSg]);
 
  
-
+  console.log("PopularRooms.jsx selectToModify", selectToModify);
   return (
     <>
       {BookingSuccess && <SuccessBooking isSuccess={BookingSuccess} />}
@@ -235,7 +235,8 @@ export default function PopularRooms({setConfirmedBookings , bookings , isFormMo
             setDateCompare={setDateInput}
             setResponseMsg={setResponseMsg}
             setConfirmedBookings={setConfirmedBookings}
-           
+            bookings={bookings}
+           selectToModify={selectToModify}
           />
           
           

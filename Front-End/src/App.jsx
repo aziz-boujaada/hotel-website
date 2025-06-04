@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Sections/Header";
 import ScrollTop from "./components/Animations/scrollTop";
@@ -9,6 +9,7 @@ import HomePage from "./components/Pages/Homepage";
 import NotFoundPage from "./components/Pages/NotFoundPage";
 import ContactPage from "./components/Pages/ContactPage";
 import ReservationStatu from "./components/dashboard/ReservationStatu";
+import axios from "axios";
 
 
 export default function App() {
@@ -28,10 +29,24 @@ export default function App() {
     setFormModalOpen(true);
     setSelectToModify(null);
   };
-  const handleOpenModifyModal = () => {
-    setSelectToModify(null);
+  const handleOpenModifyModal = (booking) => {
+    setSelectToModify(booking);
     setFormModalOpen(true);
   };
+
+  useEffect(()=>{
+    const interval = setInterval(()=>{
+      axios.get("http://localhost/hotel-website/Back-End/UpdateReservation.php")
+        .then(res=> {
+  
+          setConfirmedBookings(res.data.data || [])
+        console.log("first booking" , res.data.data?.[0])
+        })
+      }, 3000)
+      return() => clearInterval(interval)
+    } ,[])
+    console.log("App.jsx confirmed booking", confirmedBookings);
+  console.log("App.jsx selectToModify", selectToModify);
   return (
     <section className="container">
       <Router>
@@ -52,6 +67,18 @@ export default function App() {
         />
 
         <Routes>
+          <Route
+            path="/"
+            element={
+              <HomePage
+                setConfirmedBookings={setConfirmedBookings}
+                bookings={confirmedBookings}
+                isFormModalOpen={FormModalOpen}
+                openModalToNewBooking={handleOpenFormToNewBooking}
+                onCloseFormModal={handleCloseModal}
+              />
+            }
+          />
           <Route
             path="/home"
             element={
@@ -75,6 +102,7 @@ export default function App() {
                 isFormModalOpen={FormModalOpen}
                 openModalToNewBooking={handleOpenFormToNewBooking}
                 onCloseFormModal={handleCloseModal}
+                selectToModify={selectToModify}
               />
             }
           />
