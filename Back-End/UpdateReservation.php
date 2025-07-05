@@ -6,7 +6,6 @@ header("Access-Control-Allow-Headers: Content-Type");
 header('Content-Type: application/json');
  
 $data = json_decode(file_get_contents("php://input") , true);
-file_put_contents('debug.txt', print_r($data, true), FILE_APPEND);
 $request_method = $_SERVER['REQUEST_METHOD'];
 
 if($request_method == 'GET'){

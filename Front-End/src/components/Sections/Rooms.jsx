@@ -3,7 +3,7 @@ import AnimationY from "../Animations/AnimationY";
 import AnimationXtoRight from "../Animations/AnimationXtoRight";
 import FormModal from "../Forms/FormModal";
 import SuccessBooking from "../Alerts/SuccessBooking";
-import BookingState from "../dashboard/ReservationStatu";
+import RegisterForm from "../Login/register";
 
 
 import {
@@ -191,7 +191,7 @@ export default function PopularRooms({setConfirmedBookings , bookings , isFormMo
   }, [BookingSuccess, requireFields, dateInput, responseMSg]);
 
  
-  console.log("PopularRooms.jsx selectToModify", selectToModify);
+  
   return (
     <>
       {BookingSuccess && <SuccessBooking isSuccess={BookingSuccess} />}
@@ -239,7 +239,7 @@ export default function PopularRooms({setConfirmedBookings , bookings , isFormMo
            selectToModify={selectToModify}
           />
           
-          
+        
          
         </AnimationXtoRight>
       </section>

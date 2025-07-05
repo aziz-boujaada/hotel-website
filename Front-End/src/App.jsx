@@ -9,6 +9,7 @@ import HomePage from "./components/Pages/Homepage";
 import NotFoundPage from "./components/Pages/NotFoundPage";
 import ContactPage from "./components/Pages/ContactPage";
 import ReservationStatu from "./components/dashboard/ReservationStatu";
+import RegisterForm from "./components/Login/register";
 import axios from "axios";
 
 
@@ -40,13 +41,11 @@ export default function App() {
         .then(res=> {
   
           setConfirmedBookings(res.data.data || [])
-        console.log("first booking" , res.data.data?.[0])
         })
       }, 3000)
       return() => clearInterval(interval)
     } ,[])
-    console.log("App.jsx confirmed booking", confirmedBookings);
-  console.log("App.jsx selectToModify", selectToModify);
+
   return (
     <section className="container">
       <Router>
@@ -109,6 +108,7 @@ export default function App() {
           <Route path="/contact" element={<ContactPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
+        <RegisterForm/>
         <ScrollTop />
       </Router>
     </section>

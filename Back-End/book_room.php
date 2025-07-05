@@ -55,9 +55,9 @@ header('Content-Type: application/json');
     $checkEmail->bind_param("s" , $email);
     $checkEmail->execute();
     $checkEmail->store_result();
-    if($checkEmail->num_rows() > 0){
+    if($checkEmail->num_rows() == 3){
         $conn->close();
-        echo json_encode(["success" => false, "message" => "This Email Already exists "]);
+        echo json_encode(["success" => false, "message" => "This Email Used 3 times Try With Other Email  "]);
         exit;
     }
     
@@ -74,7 +74,7 @@ header('Content-Type: application/json');
         echo json_encode(["success" => false, "message" => "reservation failed"]);
         exit;
     }
-                     //  -------------- UPDATE RESERVATION ------------------//
+                     
 }
     
 

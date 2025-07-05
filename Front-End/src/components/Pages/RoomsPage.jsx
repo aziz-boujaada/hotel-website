@@ -14,7 +14,6 @@ export default function RoomsPage({
   onCloseFormModal,
    selectToModify
 }) {
-  console.log("RoomsPage.jsx selectToModify", selectToModify);
   return (
     <>
       <HeroSection />

@@ -64,7 +64,7 @@ export default function FormModal({
       });
     }
   }, [selectToModify]);
-console.log("FormModal.jsx selectToModify", selectToModify);
+
 
   const handleChange = (e) => {
     setForm({ ...Form, [e.target.name]: e.target.value });
@@ -275,7 +275,7 @@ console.log("FormModal.jsx selectToModify", selectToModify);
                 <option value="single">single</option>
                 <option value="double"> double</option>
               </select>
-            </div>
+            </div>   
             <button
               type="submit"
               className="bg-orange-500 text-white p-2 mt-5 w-[75%] hover:bg-orange-400 transition duration-300"
