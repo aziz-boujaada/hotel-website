@@ -10,6 +10,7 @@ import NotFoundPage from "./components/Pages/NotFoundPage";
 import ContactPage from "./components/Pages/ContactPage";
 import ReservationStatu from "./components/dashboard/ReservationStatu";
 import RegisterForm from "./components/Login/register";
+import LoginPage from "./components/Login/login";
 import axios from "axios";
 
 
@@ -18,6 +19,8 @@ export default function App() {
   const [confirmedBookings, setConfirmedBookings] = useState([]);
   const [selectToModify, setSelectToModify] = useState(null);
   const [FormModalOpen, setFormModalOpen] = useState(false);
+  const [isRegistered , setIsRegistered] = useState(false);
+  const [isLogin , setIsLogin] = useState(false);
 
   const handleCloseStatus = () => setStatusOpen(false);
 
@@ -49,6 +52,13 @@ export default function App() {
   return (
     <section className="container">
       <Router>
+
+        {!isRegistered ? (
+          <RegisterForm onSuccess={()=> setIsRegistered(true)}/>
+        ):(
+       
+<>
+       
         <Header
           setStatusOpen={setStatusOpen}
           bookings={confirmedBookings}
@@ -107,10 +117,15 @@ export default function App() {
           />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="*" element={<NotFoundPage />} />
+          <Route path="/login" element={ <LoginPage/>}/>
+
         </Routes>
-        <RegisterForm/>
+       
         <ScrollTop />
+        </>
+        )}
       </Router>
     </section>
   );
+
 }

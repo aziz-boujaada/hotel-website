@@ -16,7 +16,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
-//dashboard sidebar
+//dashboard sidebar 
 function Sidebar({ activeTab, setActiveTab }) {
   const sideBarElement = [
     { name: "Dashboard", icon: faChartBar },
@@ -24,7 +24,7 @@ function Sidebar({ activeTab, setActiveTab }) {
     { name: "Reservation", icon: faCalendarCheck },
     { name: "Client", icon: faUser },
     { name: "Payment", icon: faCreditCard },
-    { name: "Log Out", icon: faSignOut },
+    { name: "Log Out", icon: faSignOut }
   ];
 
   return (
@@ -62,7 +62,7 @@ function Sidebar({ activeTab, setActiveTab }) {
 }
 
 //client statistics
-function DisplayClientStatistics({ setClientStatistic , status }) {
+function DisplayClientStatistics({ setClientStatistic }) {
   return (
     <>
       <div>
@@ -137,6 +137,8 @@ function DisplayClientStatistics({ setClientStatistic , status }) {
     </>
   );
 }
+
+
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState("Dashboard");
   const [ClientStatistics, setClientStatistics] = useState({
@@ -182,6 +184,7 @@ export default function AdminDashboard() {
           deletedReservation: result.deletedReservation, 
           pendingReservation: result.pendingReservation,
         });
+
       } catch (error) {
         console.error("error fetching data", error);
       }
