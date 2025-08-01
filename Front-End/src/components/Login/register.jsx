@@ -41,7 +41,7 @@ export default function RegisterForm({onSuccess}) {
     try {
       setIsLoading(true);
       const response = await axios.post(
-        "http://localhost/hotel-website/Back-End/register.php",
+        "https://azizboujaada.infinityfreeapp.com/Back-End/register.php",
         { ...registerForm },
         {
           headers: {

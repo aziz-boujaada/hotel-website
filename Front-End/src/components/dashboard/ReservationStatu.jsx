@@ -90,7 +90,7 @@ export default function BookingState({
 
     try {
       const response = await axios.put(
-        "http://localhost/hotel-website/Back-End/reservations.php",
+        "https://azizboujaada.infinityfreeapp.com/Back-End/reservations.php",
         JSON.stringify(updatedBooking),
         {
           headers: {
@@ -130,7 +130,7 @@ export default function BookingState({
 
     try {
       const response = await axios.put(
-        "http://localhost/hotel-website/Back-End/reservations.php",
+        "https://azizboujaada.infinityfreeapp.com/Back-End/reservations.php",
         JSON.stringify(updatedBooking),
         {
           headers: {

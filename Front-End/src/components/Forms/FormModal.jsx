@@ -96,7 +96,7 @@ export default function FormModal({
       let response;
       if (selectToModify) {
         response = await axios.put(
-          "http://localhost/hotel-website/Back-End/UpdateReservation.php",
+          "https://azizboujaada.infinityfreeapp.com/Back-End/UpdateReservation.php",
           { ...Form, id : selectToModify.id},
           {
             headers: {
@@ -120,7 +120,7 @@ export default function FormModal({
         }
       } else {
         response = await axios.post(
-          "http://localhost/hotel-website/Back-End/book_room.php",
+          "https://azizboujaada.infinityfreeapp.com/Back-End/book_room.php",
           Form,
           {
             headers: {

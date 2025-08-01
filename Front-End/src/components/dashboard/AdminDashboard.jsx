@@ -165,7 +165,7 @@ export default function AdminDashboard() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost/hotel-website/Back-End/ReservationStatistics.php",
+          "https://azizboujaada.infinityfreeapp.com/Back-End/ReservationStatistics.php",
           {
           
             headers: {

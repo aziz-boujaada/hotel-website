@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function LoginPage(){
+export default function LoginPage({onLoginSuccess}){
   
   const [loginForm , setLoginForm] = useState({
     email : "" , 
@@ -41,7 +41,7 @@ const handleHiddenMessages = () => {
      try{
        
       const response = await axios.post(
-        "http://localhost/hotel-website/Back-End/login.php" , 
+        "https://azizboujaada.infinityfreeapp.com/Back-End/login.php" , 
         {...loginForm},
         {
           headers : {
@@ -55,7 +55,8 @@ const handleHiddenMessages = () => {
         console.log(result)
         setLoginMessage(result.message);
         setLoginSuccessMessage(true);
-        navigate("/")
+        onLoginSuccess();
+      setTimeout(() =>  navigate("/") ,2000) ;
       }else{
         console.log(result)
         setLoginMessage(result.message);

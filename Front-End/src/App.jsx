@@ -40,7 +40,7 @@ export default function App() {
 
   useEffect(()=>{
     const interval = setInterval(()=>{
-      axios.get("http://localhost/hotel-website/Back-End/UpdateReservation.php")
+      axios.get("https://azizboujaada.infinityfreeapp.com/Back-End/UpdateReservation.php")
         .then(res=> {
   
           setConfirmedBookings(res.data.data || [])
@@ -49,16 +49,40 @@ export default function App() {
       return() => clearInterval(interval)
     } ,[])
 
+
+   useEffect(() => {
+    const registered = localStorage.getItem("isRegistered");
+    if (registered === "true") {
+      setIsRegistered(true);
+    }
+    const loggedIn = localStorage.getItem("isLogin");
+    if (loggedIn === "true") {
+      setIsLogin(true);
+    }
+  }, []);
+
+  const handleRegisterSuccess = () => {
+    setIsRegistered(true);
+    localStorage.setItem("isRegistered", "true");
+  }
+
+  const handleLoginSuccess = () => {
+    setIsLogin(true);
+    localStorage.setItem("isLogin", "true");
+  }
+
   return (
     <section className="container">
       <Router>
-
         {!isRegistered ? (
-          <RegisterForm onSuccess={()=> setIsRegistered(true)}/>
-        ):(
+          <RegisterForm onSuccess={handleRegisterSuccess} />
+        ) : !isLogin ? (
+          <LoginPage onLoginSuccess={handleLoginSuccess} />
+        ) : (
+
        
 <>
-       
+          
         <Header
           setStatusOpen={setStatusOpen}
           bookings={confirmedBookings}
